@@ -1,6 +1,6 @@
 from flask import Flask, render_template
 
-from utils import api
+from utils import api, db_mgmt as db
 
 app = Flask(__name__)
 
