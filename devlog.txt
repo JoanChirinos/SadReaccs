@@ -1,29 +1,10 @@
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-USAGE:
-* Replace all fields, angle brackets included, with specified info.
-  eg, pd <pd#> --> pd 3
-* Delete these instructions once all teammates understand usage.
-  (from tilde bar above to tilde bar below)
-* rename this file devlog.txt
-
-devlog--
-Use keyboard shortcut to jump to end,
- replicate entry template, (Ctrl-Shift up x5, Ctrl-X, Ctrl-V x2)
- modify appropriately.
-Each entry should begin with the following format:
- firstL -- TIMESTAMP\n
-e.g.:
-clydeS -- 2999-12-31 23:59
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-<Team Name (minus "team")>
-<Member Bubbles>
-<Member Buttercup>
-<Member Blossom>
-pd <pd#>
+SadReaccs
+Susan Lin
+Raunak Chowdhury
+Joan Chirinos
+pd 08
 ---------------------
-<Project Title/Description>
-
+TravelBois -- a web application for aspiring travelers to gather information such as live weather updates on the cities they wish to visit
 
  ______   ______   __   __   __       ______   _______
 /_____/\ /_____/\ /_/\ /_/\ /_/\     /_____/\ /______/\
@@ -35,10 +16,24 @@ pd <pd#>
 ==============================================================
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
+SusanL -- 2018-11-23 16:02
+--------------------------------------------------------------
+- Fixed design doc according to edits such as clarifying Bootstrap usage
+  and revised our API listing 
+- Cleaned up repo by storing all design docs in docs/
+- Determined APIs to be GeoDB, ClimaCell, Wunderground, and ZipCode
+==============================================================
+
 RaunakC -- 2018-11-22 13:00
 --------------------------------------------------------------
 - Added Flask, API, and DB backbones
 - Added separate endpoint for general/misc API testing
+==============================================================
+
+SusanL RaunakC JoanC -- 2018-11-21 13:00
+--------------------------------------------------------------
+- Fixed submodule linkage
+- Received feedback from other teams
 ==============================================================
 
 SusanL RaunakC JoanC -- 2018-11-19 14:00
