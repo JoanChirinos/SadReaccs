@@ -1,0 +1,20 @@
+<div class="row justify-content-end">
+    <div class="col-md-2">
+        {% set msgs = get_flashed_messages() %}
+        {% for msg in msgs %}
+        <div class="alert alert-success">
+            {{ msg }}
+        </div>
+        {% endfor %}
+    </div>
+    <div class="col-md-2">
+        <form action="/account-redirect">
+            <button type="submit" class="btn btn-outline-success btn-block" name="action" value="login">Log In</button>
+        </form>
+        </div>
+    <div class="col-md-2">
+        <form action="/account-redirect">
+            <button type="submit" class="btn btn-outline-warning btn-block" name="action" value="create">Create Account</button>
+        </form>
+    </div>
+</div>

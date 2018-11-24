@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Landing{% endblock %}
+
+{% block content %}
+<div class="container" style="height: 10vh;">
+    {% include login_info %}
+</div>
+<div class="container" style="height: 90vh;">
+    <div class="row h-100 justify-content-center align-items-center">
+        <div>
+            <a class="display-1 link-h" href="/">TravelBois</a>
+            <form action="/search">
+                <div class="form-group has-search-icon">
+                    <span class="fa fa-search search-icon"></span>
+                    <input type="text" class="form-control" placeholder="Where to?" name="query">
+                </div>
+            </form>
+            <div style="height: 50vh;"></div>
+        </div>
+    </div>
+</div>
+{% endblock %}

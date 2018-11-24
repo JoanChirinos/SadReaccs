@@ -1,33 +1,146 @@
-from flask import Flask, render_template
+import os
 
-from utils import api, db_mgmt as db
+from flask import Flask, render_template, request, session, url_for, redirect, flash
+
+from utils import api, db as dbm
+
+app = Flask(__name__) #create instance of class Flask
+
+# app.secret_key = os.urandom(32)
 
 app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return '<a href=/apitester > Test API calls </a> '
+    '''
+    Displays landing page
+    If the user is logged in, displays the user-toolbar
+    Otherwise, displays login and create_account buttons
+    '''
+    if 'username' in session:
+        print('LOGGED IN')
+        return render_template('index.html', login_info='SNIPPET_user_info.html', username=session['username'])
+    else:
+        print('NOT LOGGED IN!')
+        return render_template('index.html', login_info='SNIPPET_login_create_bar.html')
 
-@app.route('/apitester')
-def apitester():
-    args = {}
-    # Dog API by Vincent Lin
-    URL = 'https://dog.ceo/api/breeds/image/random'
-    args['dogs'] = ('Doggos', api.access_info(URL)['message'])
+@app.route('/logout')
+def logout():
+    '''
+    Logs user out, then redirects to landing page
+    '''
+    if 'username' in session:
+        print('LOGGING OUT')
+        session.pop('username')
+    return redirect(url_for('index'))
 
-    # Bored API by Imad Belkbir
-    URL = 'https://www.boredapi.com/api/activity'
-    args['bored'] = ('Bored', api.access_info(URL)['activity'])
+@app.route('/account-redirect')
+def account_redirect():
+    '''
+    Redirection on login/create buttons
+    If login button pressed, redirect to login page
+    If create_account button pressed, redirect to create_account page
+    Otherwise, flash user then redirect to landing
+    '''
+    action = request.args['action']
+    if action == 'login':
+        return redirect(url_for('login'))
+    elif action == 'create':
+        return redirect(url_for('create'))
+    else:
+        flash('Invalid action!')
+        return redirect(url_for('index'))
 
+@app.route('/login')
+def login():
+    '''
+    Login route
+    If user is logged in, redirects them to root
+    Otherwise, renders login template
+    '''
+    if 'username' in session:
+        return redirect(url_for('index'))
+    return render_template('login.html')
 
-    # NY Times API by Puneet Johal
-    URL_STUB = 'http://api.nytimes.com/svc/topstories/v2/home.json?api-key='
-    API_KEY = 'a0232fcf73d345d5901d4f850939650b'
-    args['nytimes'] = ('New York Times Top Stories', api.access_info(URL_STUB, API_KEY)['results'][0])
+@app.route('/auth', methods=["POST"])
+def auth():
+    '''
+    Authenticates user
+    If username password are correct, store username in session and redirect to landing
+    Else, flash user and redirect back to login page
+    '''
+    username = request.form['username']
+    password = request.form['password']
 
+    # authenticate with DB
 
-    return render_template('apitester.html', **args)
+    # For right now, assume username, password pair is 'u', 'p'
+    if username == 'u' and password == 'p':
+        session['username'] = username
+        return redirect(url_for('index'))
+
+    else:
+        flash('Incorrect username or password!')
+        return redirect(url_for('login'))
+
+@app.route('/create_account')
+def create():
+    '''
+    If user is logged in, redirects to landing
+    Otherwise, renders create_account template
+    '''
+    if 'username' in session:
+        return redirect(url_for('index'))
+    return render_template('create_account.html')
+
+@app.route('/create_account_action', methods=["POST"])
+def create_action():
+    '''
+    Attemps to create an account using given username and Password
+    Fails if
+        Either field contains a space
+        The username already exists
+        The passwords don't match
+    On failure, flashes user and redirects to create_account
+    On success
+        Stores credentials in DB
+        flashes user
+        Redirects user to landing
+    '''
+
+    username = request.form['username']
+    password = request.form['password']
+    password_check = request.form['password_check']
+
+    print("USERNAME: {}\nPASSWORD: {}\nPASSWORD2: {}".format(username, password, password_check))
+
+    if ' ' in username or username.strip() == '':
+        flash('Username invalid!')
+        return redirect(url_for('create'))
+
+    if ' ' in password or password.strip() == '':
+        flash('Password invalid')
+        return redirect(url_for('create'))
+
+    if password != password_check:
+        flash('Passwords don\'t match!')
+        return redirect(url_for('create'))
+
+    # if username already exists
+        # flash, redirect
+
+    # store username, password in DB
+
+    print('CREATE ACCOUNT SUCCESS')
+
+    flash('You can now log in!')
+    return redirect(url_for('index'))
+
+@app.route('/search', methods=["GET"])
+def search():
+    return 'Working on it'
 
 if __name__ == '__main__':
+    app.secret_key = os.urandom(32)
     app.debug=True
     app.run()

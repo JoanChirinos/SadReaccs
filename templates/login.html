@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<div class="container" style="height: 100vh;">
+    <div class="row h-100 justify-content-center align-items-center">
+        <div>
+            <a class="display-1 link-h" href="/">TravelBois</a>
+            {% set msgs = get_flashed_messages() %}
+            {% for msg in msgs %}
+            <div class="alert alert-danger">
+                {{ msg }}
+            </div>
+            {% endfor %}
+            <form action="/auth" method="POST">
+                <div class="form-group">
+                    <input type="text" id="username" name="username" placeholder="Username" class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="password" name="password" placeholder="Password" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-success btn-block">Log In</button>
+            </form>
+            <div style="height: 50vh;"></div>
+        </div>
+    </div>
+</div>
+{% endblock %}
