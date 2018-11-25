@@ -16,6 +16,12 @@ TravelBois -- a web application for aspiring travelers to gather information suc
 ==============================================================
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
+RaunakC -- 2018-11-24 22:00
+--------------------------------------------------------------
+- Implemented GeoDB for searching (Searching functionality is now live)
+- Modified access_info() so that it accepts kwargs to apply as headers to API requests
+==============================================================
+
 JoanC -- 2018-11-24 19:00
 --------------------------------------------------------------
 - Started working on templates
@@ -25,7 +31,7 @@ JoanC -- 2018-11-24 19:00
 SusanL -- 2018-11-23 16:02
 --------------------------------------------------------------
 - Fixed design doc according to edits such as clarifying Bootstrap usage
-  and revised our API listing 
+  and revised our API listing
 - Cleaned up repo by storing all design docs in docs/
 - Determined APIs to be GeoDB, ClimaCell, Wunderground, and ZipCode
 ==============================================================

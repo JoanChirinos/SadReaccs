@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask, render_template, request, session, url_for, redirect, flash
+from flask import Flask, render_template, request, session, url_for, redirect, flash, jsonify
 
 from utils import api, db as dbm
 
@@ -141,7 +141,25 @@ def create_action():
 
 @app.route('/search', methods=["GET"])
 def search():
-    return 'Working on it'
+    '''
+    Uses the query from the search bar to search for places.
+    Returns a list of places that match the query.
+    '''
+    # query and empty string check
+    query = request.args['query'].strip()
+    if query == '':
+        flash('No query inputted!')
+        return redirect(url_for('index'))
+    # set up headers
+    headers = {}
+    headers['X-Mashape-Key'] = 'tzSzy9eFlYmsh5iRSqqFq3dIdKanp19jDRIjsnaPw5zvVMWL5N'
+    headers['X-Mashape-Host'] = 'wft-geo-db.p.mashape.com'
+
+    # do the request
+    URL = 'https://wft-geo-db.p.mashape.com/v1/geo/cities?namePrefix={}&offset=0&limit=10'.format(query)
+    result = api.access_info(URL, **headers)['data']
+    # return jsonify(result)
+    return render_template('results.html', cities=result)
 
 if __name__ == '__main__':
     app.secret_key = os.urandom(32)
