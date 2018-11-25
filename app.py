@@ -147,26 +147,15 @@ def search():
     '''
     # query and empty string check
     query = request.args['query']
-    # remove both leading and trailing whitespace
-    query = query.lstrip()
-    query = query.rstrip()
-    # check to see if the user was being a dud
-    if query == '':
+    result = api.search_city(query)
+    if result:
+        return render_template('results.html', cities=result)
+    elif result == []:
+        flash('No cities found!')
+        return redirect(url_for('index'))
+    else:
         flash('No query inputted!')
         return redirect(url_for('index'))
-    # replace all inner whitespace with %20 for API request
-    query = query.replace(' ', '%20')
-
-    # set up headers
-    headers = {}
-    headers['X-Mashape-Key'] = 'tzSzy9eFlYmsh5iRSqqFq3dIdKanp19jDRIjsnaPw5zvVMWL5N'
-    headers['X-Mashape-Host'] = 'wft-geo-db.p.mashape.com'
-
-    # do the request
-    URL = 'https://wft-geo-db.p.mashape.com/v1/geo/cities?namePrefix={}&offset=0&limit=10'.format(query)
-    result = api.access_info(URL, **headers)['data']
-    # return jsonify(result)
-    return render_template('results.html', cities=result)
 
 if __name__ == '__main__':
     app.secret_key = os.urandom(32)

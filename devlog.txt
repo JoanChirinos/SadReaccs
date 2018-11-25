@@ -21,6 +21,7 @@ RaunakC -- 2018-11-25 12:00
 - Fixed a space bug that resulted in a 400 error
 - Spacing bug now exists
 - Fixed spacing bug with lstrip() and rstrip()
+- Accounted for what happens when no cities are found
 ==============================================================
 
 RaunakC -- 2018-11-24 22:00
