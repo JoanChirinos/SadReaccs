@@ -147,10 +147,16 @@ def search():
     '''
     # query and empty string check
     query = request.args['query']
-    query = query.replace(' ', '%20')
+    # remove both leading and trailing whitespace
+    query = query.lstrip()
+    query = query.rstrip()
+    # check to see if the user was being a dud
     if query == '':
         flash('No query inputted!')
         return redirect(url_for('index'))
+    # replace all inner whitespace with %20 for API request
+    query = query.replace(' ', '%20')
+
     # set up headers
     headers = {}
     headers['X-Mashape-Key'] = 'tzSzy9eFlYmsh5iRSqqFq3dIdKanp19jDRIjsnaPw5zvVMWL5N'
