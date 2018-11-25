@@ -148,9 +148,9 @@ def search():
     # query and empty string check
     query = request.args['query']
     query = query.replace(' ', '%20')
-    # if query == '':
-    #     flash('No query inputted!')
-    #     return redirect(url_for('index'))
+    if query == '':
+        flash('No query inputted!')
+        return redirect(url_for('index'))
     # set up headers
     headers = {}
     headers['X-Mashape-Key'] = 'tzSzy9eFlYmsh5iRSqqFq3dIdKanp19jDRIjsnaPw5zvVMWL5N'

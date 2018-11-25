@@ -16,9 +16,10 @@ TravelBois -- a web application for aspiring travelers to gather information suc
 ==============================================================
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
-RaunakC -- 2018-11-24 22:00
+RaunakC -- 2018-11-25 12:00
 --------------------------------------------------------------
 - Fixed a space bug that resulted in a 400 error
+- Spacing bug now exists
 ==============================================================
 
 RaunakC -- 2018-11-24 22:00
