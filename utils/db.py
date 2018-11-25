@@ -2,7 +2,7 @@ import sqlite3
 import random
 from datetime import datetime
 
-DB_FILE="./data/api.db"
+DB_FILE="./data/sadreaccs.db"
 
 def create_db():
     '''
