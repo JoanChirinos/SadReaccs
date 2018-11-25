@@ -10,7 +10,7 @@ def create_db():
     '''
     db = sqlite3.connect(DB_FILE) #open if file exists, otherwise create
     c = db.cursor()               #facilitate db ops
-    
+
     c.execute("CREATE TABLE IF NOT EXISTS users(username TEXT, password TEXT)")
     c.execute("CREATE TABLE IF NOT EXISTS searches(username TEXT, search TEXT, time TEXT)")
 
@@ -74,3 +74,6 @@ def addSearch(user, search):
     c.execute("INSERT INTO searches VALUES ('{0}', '{1}', '{2}')".format(user, search, datetime.utcnow()))
     db.commit()
     db.close()
+
+if __name__ == '__main__':
+    create_db()
