@@ -16,6 +16,12 @@ TravelBois -- a web application for aspiring travelers to gather information suc
 ==============================================================
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
+JoanC -- 2018-11-24 19:00
+--------------------------------------------------------------
+- Started working on templates
+- Started working on app.py
+==============================================================
+
 SusanL -- 2018-11-23 16:02
 --------------------------------------------------------------
 - Fixed design doc according to edits such as clarifying Bootstrap usage
