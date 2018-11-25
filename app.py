@@ -127,10 +127,12 @@ def create_action():
         flash('Passwords don\'t match!')
         return redirect(url_for('create'))
 
-    # if username already exists
-        # flash, redirect
+    if dbm.isUser(username):
+        flash('Username already in use')
+        return redirect(url_for('create'))
 
-    # store username, password in DB
+    # if you get here, ur successful!
+    dbm.register(username, password)
 
     print('CREATE ACCOUNT SUCCESS')
 
