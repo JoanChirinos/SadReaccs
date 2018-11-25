@@ -18,6 +18,11 @@ TravelBois -- a web application for aspiring travelers to gather information suc
 
 RaunakC -- 2018-11-24 22:00
 --------------------------------------------------------------
+- Fixed a space bug that resulted in a 400 error
+==============================================================
+
+RaunakC -- 2018-11-24 22:00
+--------------------------------------------------------------
 - Implemented GeoDB for searching (Searching functionality is now live)
 - Modified access_info() so that it accepts kwargs to apply as headers to API requests
 ==============================================================
