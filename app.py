@@ -72,10 +72,11 @@ def auth():
     username = request.form['username']
     password = request.form['password']
 
-    # authenticate with DB
+    if not dbm.isUser(username):
+        flash('Invalid username or password!')
+        return redirect(url_for('login'))
 
-    # For right now, assume username, password pair is 'u', 'p'
-    if username == 'u' and password == 'p':
+    if dbm.getPw(username) == password:
         session['username'] = username
         return redirect(url_for('index'))
 
