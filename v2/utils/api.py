@@ -49,3 +49,19 @@ def search_city(query):
     result = access_info(URL, **headers)['data']
     # return jsonify(result)
     return result
+
+def return_weather(latitude, longitude):
+    '''
+    Feeds the lat/long from GeoDB into the Climacell API.
+    Returns a dictionary with different weather metrics (temp, dew pt, etc.).
+    Results are updated hourly.
+    '''
+    # set up headers
+    headers = {}
+    headers['apikey'] = 'dsZbfxJQ2fyXMLhnDJezjoeQJ77kiqSI'
+    URL = 'https://api2.climacell.co/v2/weather/forecast/hourly?lat={}&lon={}'.format(latitude, longitude)
+    result = access_info(URL, **headers)[0]
+    return result
+
+if __name__ == '__main__':
+    # print(return_weather(15,15))
