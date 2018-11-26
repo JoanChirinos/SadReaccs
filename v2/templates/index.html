@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Landing{% endblock %}
+
+{% block content %}
+<div style="height: 0.5vh;"></div>
+<div class="container" style="height: 9.5vh;">
+    {% include login_info %}
+</div>
+<br>
+<div class="container">
+    <div class="row h-100 justify-content-center align-items-end">
+        <div>
+            <a class="display-1 link-h" href="/">TravelBois</a>
+            <form action="/search">
+                <div class="form-group has-search-icon">
+                    <span class="fa fa-search search-icon"></span>
+                    <input type="text" class="form-control" placeholder="Where to?" id="query" name="query">
+                </div>
+            </form>
+        </div>
+    </div>
+    {% set msgs = get_flashed_messages() %}
+    {% for msg in msgs %}
+    <div class="alert alert-danger">{{ msg }}</div>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,14 @@
+.link-h {
+    color: black;
+    text-decoration: none;
+}
+
+.link-h:hover {
+    color: black;
+    text-decoration: none;
+}
+
+.btn {
+    white-space: normal !important;
+    word-wrap: break-word;
+}
