@@ -28,6 +28,7 @@ def search_city(query):
     Checks for trailing and leading whitespace and makes decisions accordingly.
     If stripping results in empty string, returns None.
     If no results are returned, returns an empty list.
+    Limit on API calls: 432k/day
     '''
     # remove both leading and trailing whitespace
     query = query.lstrip()
@@ -55,6 +56,7 @@ def return_weather(latitude, longitude):
     Feeds the lat/long from GeoDB into the Climacell API.
     Returns a dictionary with different weather metrics (temp, dew pt, etc.).
     Results are updated hourly.
+    Limit on API calls: 1000/day
     '''
     # set up headers
     headers = {}
