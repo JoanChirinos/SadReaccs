@@ -1,13 +1,5 @@
 <div class="row justify-content-end align-items-center">
     <div class="col-md-2">
-        {% set msgs = get_flashed_messages() %}
-        {% for msg in msgs %}
-        <div class="alert alert-success">
-            {{ msg }}
-        </div>
-        {% endfor %}
-    </div>
-    <div class="col-md-2">
         <form action="/account-redirect">
             <button type="submit" class="btn btn-success btn-block" name="action" value="login">Log In</button>
         </form>

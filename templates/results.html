@@ -9,20 +9,19 @@
 <div class="container" style="height: 90vh;">
     <div class="row h-100 justify-content-center align-items-center">
         <div>
-            <a class="display-1 link-h" href="/">TravelBois</a> <br>
             {% for city in cities %}
-              {{city['city']}},
+                {{city['city']}},
+                {% if city['region']%}
+                  {{city['region']}},
+                {% endif %}
 
-              {% if city['region']%}
-                {{city['region']}},
-              {% endif %}
-
-              <!-- if the country name exists, put it; otherwise, put the country initial -->
+            <!-- if the country name exists, put it; otherwise, put the country initial -->
               {% if city['country']%}
-                {{city['country']}}
+                  {{city['country']}}
               {% else %}
-                {{city['countryCode']}}
-              {% endif %} <br>
+                  {{city['countryCode']}}
+              {% endif %}
+              <br>
             {% endfor %}
             <div style="height: 50vh;"></div>
         </div>
