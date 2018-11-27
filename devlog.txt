@@ -16,6 +16,11 @@ TravelBois -- a web application for aspiring travelers to gather information suc
 ==============================================================
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
+RaunakC -- 2018-11-27 17:00
+--------------------------------------------------------------
+- Historical Weather API now functional
+==============================================================
+
 RaunakC -- 2018-11-26 17:00
 --------------------------------------------------------------
 - Climacell API now functional
@@ -25,7 +30,7 @@ SusanL -- 2018-11-26 21:53
 --------------------------------------------------------------
 - testing the efficiency/need for version control
 - Determined we should substitute Wunderground for World Weather Online's Premium API because
-Wundergound is in the process of no longer existing. 
+Wundergound will be discontinued.
 - talked to team about various notes on current working version (posted as issue on github)
 ==============================================================
 

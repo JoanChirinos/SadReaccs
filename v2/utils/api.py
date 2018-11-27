@@ -65,5 +65,31 @@ def return_weather(latitude, longitude):
     result = access_info(URL, **headers)[0]
     return result
 
+def return_historical_weather(latitude, longitude):
+    '''
+    Feeds the lat/long from GeoDB into the Historical Weather API.
+    Returns a dictionary with different weather metrics (temp, dew pt, etc.).
+    Limit on API calls: 500/day
+    '''
+
+    API_KEY = 'a7294c4e9c7e471aa64214148182711'
+    # Provides weather data from 11/1 to 11/27
+    URL = 'https://api.worldweatheronline.com/premium/v1/past-weather.ashx?format=json&q={},{}&date=2018-11-01&enddate=2018-11-27&key='.format(latitude, longitude)
+
+    # Get to the weather data
+    result = access_info(URL, API_KEY)['data']['weather'][0]
+    return result
+
+def return_zip_code(latitude, longitude):
+    '''
+    Feeds the lat/long from GeoDB into the Historical Weather API.
+    Returns a dictionary with different weather metrics (temp, dew pt, etc.).
+    Limit on API calls: 250/day
+    '''
+    API_KEY = 'Po9k2i9YAbWEjU5Kp0ey6J4ImKSKKAnrWVpXhRyPkt0CesMGE2Sw5TfATIwJ5OzF'
+    URL = 'https://www.zipcodeapi.com/rest/{}/'.format(API_KEY)
+
+
 if __name__ == '__main__':
-    print(return_weather(15,15))
+    #print(return_weather(15,15))
+    print(return_historical_weather(15,15))
