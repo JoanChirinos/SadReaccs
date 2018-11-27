@@ -24,7 +24,8 @@ RaunakC -- 2018-11-26 17:00
 SusanL -- 2018-11-26 21:53
 --------------------------------------------------------------
 - testing the efficiency/need for version control
-- Determined we should substitute Wunderground for World Weather Online's Premium API
+- Determined we should substitute Wunderground for World Weather Online's Premium API because
+Wundergound is in the process of no longer existing. 
 - talked to team about various notes on current working version (posted as issue on github)
 ==============================================================
 
