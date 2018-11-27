@@ -66,4 +66,4 @@ def return_weather(latitude, longitude):
     return result
 
 if __name__ == '__main__':
-    # print(return_weather(15,15))
+    print(return_weather(15,15))
