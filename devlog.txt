@@ -21,6 +21,13 @@ RaunakC -- 2018-11-26 17:00
 - Climacell API now functional
 ==============================================================
 
+SusanL -- 2018-11-26 21:53
+--------------------------------------------------------------
+- testing the efficiency/need for version control
+- Determined we should substitute Wunderground for World Weather Online's Premium API
+- talked to team about various notes on current working version (posted as issue on github)
+==============================================================
+
 RaunakC -- 2018-11-25 12:00
 --------------------------------------------------------------
 - Fixed a space bug that resulted in a 400 error
@@ -33,6 +40,11 @@ RaunakC -- 2018-11-24 22:00
 --------------------------------------------------------------
 - Implemented GeoDB for searching (Searching functionality is now live)
 - Modified access_info() so that it accepts kwargs to apply as headers to API requests
+==============================================================
+
+JoanC -- 2018-11-24 20:21
+--------------------------------------------------------------
+- Started working on db.py
 ==============================================================
 
 JoanC -- 2018-11-24 19:00
