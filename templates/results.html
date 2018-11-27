@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Results{% endblock %}
+
+{% block content %}
+<div style="height: 0.5vh;"></div>
+<div class="container" style="height: 9.5vh;">
+</div>
+<div class="container" style="height: 90vh;">
+    <div class="row h-100 justify-content-center align-items-center">
+        <div>
+            {% for city in cities %}
+                {{city['city']}},
+                {% if city['region']%}
+                  {{city['region']}},
+                {% endif %}
+
+            <!-- if the country name exists, put it; otherwise, put the country initial -->
+              {% if city['country']%}
+                  {{city['country']}}
+              {% else %}
+                  {{city['countryCode']}}
+              {% endif %}
+              <br>
+            {% endfor %}
+            <div style="height: 50vh;"></div>
+        </div>
+    </div>
+</div>
+{% endblock %}
