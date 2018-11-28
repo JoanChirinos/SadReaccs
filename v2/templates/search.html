@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}Results{% endblock %}
+
+{% block content %}
+<div style="height: 0.5vh;"></div>
+<div class="container-fluid">
+    <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand" href="/">TravelBois</a>
+        
+        <!-- search bar -->
+        <form class="form-inline has-search-icon" action="/search" method="get">
+            <span class="fa fa-search search-icon"></span>
+            <input type="text" class="form-control" placeholder="Where to?" id="query" name="query">
+        </form>
+        
+        <!-- account stuff -->
+        {% include login_info %}
+        
+    </nav>
+</div>
+<br>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="w-100">
+            {% for city in cities %}
+            <div class="card" style="w-100">
+                <div class="card-body">
+                    <a href="/city/{{ city['city'] }}/{{ city['latitude'] }}/{{ city['longitude'] }}">
+
+                        {{city['city']}},
+                        {% if city['region'] %}
+                            {{city['region']}},
+                        {% endif %}
+
+                    <!-- if the country name exists, put it; otherwise, put the country initial -->
+                        {% if city['country']%}
+                            {{city['country']}}
+                        {% else %}
+                            {{city['countryCode']}}
+                        {% endif %}
+                    </a>
+                </div>
+            </div>
+            <br>
+            {% endfor %}
+            <div style="height: 50vh;"></div>
+        </div>
+    </div>
+</div>
+{% endblock %}

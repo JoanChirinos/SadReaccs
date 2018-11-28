@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Results{% endblock %}
+{% block title %}{{ city }}{% endblock %}
 
 {% block content %}
 <div style="height: 0.5vh;"></div>
@@ -13,30 +13,24 @@
             <span class="fa fa-search search-icon"></span>
             <input type="text" class="form-control" placeholder="Where to?" id="query" name="query">
         </form>
+        
+        <!-- account stuff -->
+        {% include login_info %} 
     </nav>
 </div>
 <br>
 <div class="container">
-    <div class="row justify-content-center">
-        <div>
-            {% for city in cities %}
-            <a href="/results/{{ city['latitude'] }}/{{ city['longitude'] }}">
-                {{city['city']}},
-                {% if city['region'] %}
-                  {{city['region']}},
-                {% endif %}
-
-            <!-- if the country name exists, put it; otherwise, put the country initial -->
-              {% if city['country']%}
-                  {{city['country']}}
-              {% else %}
-                  {{city['countryCode']}}
-              {% endif %}
-            </a>
-              <br>
-            {% endfor %}
-            <div style="height: 50vh;"></div>
+    {% for item in weather.items() %}
+    <p>{{item[0]}}: {{item[1]}}</p>
+    {% endfor %}
+    <div class="card w-100">
+        <div class="card-body">
+            <h1 class="card-title">{{ city }}</h1>
+            
+            <p>Temp: {{weather['temp']['value']}} {{weather['temp']['units']}} </p>
+            <p></p>
         </div>
     </div>
 </div>
+
 {% endblock %}

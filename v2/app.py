@@ -145,11 +145,17 @@ def search():
     Uses the query from the search bar to search for places.
     Returns a list of places that match the query.
     '''
+    username = ''
+    if 'username' in session:
+        login_info = 'SNIPPET_user_info_navbar.html'
+        username = session['username']
+    else:
+        login_info = 'SNIPPET_login_create_bar_navbar.html'
     # query and empty string check
     query = request.args['query']
     result = api.search_city(query)
     if result:
-        return render_template('results.html', cities=result)
+        return render_template('search.html', cities=result, login_info=login_info, username=username)
     elif result == []:
         flash('No cities found!')
         return redirect(url_for('index'))
@@ -157,9 +163,21 @@ def search():
         flash('No query inputted!')
         return redirect(url_for('index'))
 
-@app.route('/results/<lat>/<long>')
-def results(lat, long):
-    return render_template('results.html')
+@app.route('/city/<city>/<lat>/<long>')
+def results(city, lat, long):
+    args = dict()
+
+    args['city'] = city
+    args['username'] = ''
+    if 'username' in session:
+        args['login_info'] = 'SNIPPET_user_info_navbar.html'
+        args['username'] = session['username']
+    else:
+        args['login_info'] = 'SNIPPET_login_create_bar_navbar.html'
+
+    args['weather'] = api.return_weather(lat, long)
+
+    return render_template('results.html', **args)
 
 if __name__ == '__main__':
     app.secret_key = os.urandom(32)

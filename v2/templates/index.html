@@ -22,7 +22,7 @@
     </div>
     {% set msgs = get_flashed_messages() %}
     {% for msg in msgs %}
-    <div class="alert alert-danger">{{ msg }}</div>
+    <div class="alert alert-warning">{{ msg }}</div>
     {% endfor %}
 </div>
 {% endblock %}
