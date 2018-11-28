@@ -9,7 +9,9 @@
 <div class="container" style="height: 90vh;">
     <div class="row h-100 justify-content-center">
         <div>
+            
             {% for city in cities %}
+            <a href="">
                 {{city['city']}},
                 {% if city['region']%}
                   {{city['region']}},
@@ -22,8 +24,8 @@
                   {{city['countryCode']}}
               {% endif %}
               <br>
+            </a>
             {% endfor %}
-            
         </div>
     </div>
 </div>

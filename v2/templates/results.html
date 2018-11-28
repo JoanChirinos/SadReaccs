@@ -4,14 +4,25 @@
 
 {% block content %}
 <div style="height: 0.5vh;"></div>
-<div class="container" style="height: 9.5vh;">
+<div class="container-fluid">
+    <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand" href="/">TravelBois</a>
+        
+        <!-- search bar -->
+        <form class="form-inline has-search-icon" action="/search" method="get">
+            <span class="fa fa-search search-icon"></span>
+            <input type="text" class="form-control" placeholder="Where to?" id="query" name="query">
+        </form>
+    </nav>
 </div>
-<div class="container" style="height: 90vh;">
-    <div class="row h-100 justify-content-center align-items-center">
+<br>
+<div class="container">
+    <div class="row justify-content-center">
         <div>
             {% for city in cities %}
+            <a href="/results/{{ city['latitude'] }}/{{ city['longitude'] }}">
                 {{city['city']}},
-                {% if city['region']%}
+                {% if city['region'] %}
                   {{city['region']}},
                 {% endif %}
 
@@ -21,6 +32,7 @@
               {% else %}
                   {{city['countryCode']}}
               {% endif %}
+            </a>
               <br>
             {% endfor %}
             <div style="height: 50vh;"></div>

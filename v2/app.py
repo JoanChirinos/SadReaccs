@@ -157,6 +157,10 @@ def search():
         flash('No query inputted!')
         return redirect(url_for('index'))
 
+@app.route('/results/<lat>/<long>')
+def results(lat, long):
+    return render_template('results.html')
+
 if __name__ == '__main__':
     app.secret_key = os.urandom(32)
     app.debug=True
