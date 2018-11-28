@@ -12,7 +12,7 @@ def create_db():
     c = db.cursor()               #facilitate db ops
 
     c.execute("CREATE TABLE IF NOT EXISTS users(username TEXT, password TEXT)")
-    c.execute("CREATE TABLE IF NOT EXISTS searches(username TEXT, search TEXT, time TEXT)")
+    c.execute("CREATE TABLE IF NOT EXISTS searches(username TEXT, long INTEGER, lat INTEGER, city TEXT, time TEXT)")
 
     db.commit()
     db.close()
@@ -47,12 +47,23 @@ def getSearches(user):
     '''
     returns all searches of a specific user
     '''
+    x = {'long', 'lat', 'city', 'time'}
+
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
-    c.execute("SELECT search FROM searches WHERE username = '{0}'".format(user))
-    x = c.fetchall()
+
+    c.execute("SELECT long FROM searches WHERE username = '{0}'".format(user))
+    x['long'].append(c.fetchall())
+    c.execute("SELECT lat FROM searches WHERE username = '{0}'".format(user))
+    x['lat'].append(c.fetchall())
+    c.execute("SELECT city FROM searches WHERE username = '{0}'".format(user))
+    x['city'].append(c.fetchall())
+    c.execute("SELECT timestamp FROM searches WHERE username = '{0}'".format(user))
+    x['time'].append(c.fetchall())
+
     db.commit()
     db.close()
+
     return x
 
 def register(user, pw):
@@ -65,15 +76,17 @@ def register(user, pw):
     db.commit()
     db.close()
 
-def addSearch(user, search):
+def addSearch(user, long, lat, city):
     '''
     creates entry in searches database of search text, username, and timestamp
     '''
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
-    c.execute("INSERT INTO searches VALUES ('{0}', '{1}', '{2}')".format(user, search, datetime.utcnow()))
+    c.execute("INSERT INTO searches VALUES ('{0}', '{1}', '{2}', '{3}', '{4}')".format(user, long, lat, city, datetime.utcnow()))
     db.commit()
     db.close()
+
+    return True
 
 if __name__ == '__main__':
     create_db()
