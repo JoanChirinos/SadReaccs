@@ -15,6 +15,14 @@ TravelBois -- a web application for aspiring travelers to gather information suc
     \____/_/ \_____\/ \___/_(   \_____\/ \_____\/ \_____\/
 ==============================================================
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+SusanL -- 2018-11-28 18:50
+--------------------------------------------------------------
+- updated searches database to hold long, lat, and city name as field inputs 
+- wrote db functions to add/get searches of a specific user 
+- updated design doc to no longer include zipcodeapi (we deemed it ultimately unnecessary because if you knew the zip of a place, you'd likely already know the name of the place) 
+- updated name to WeatherBois because we realized all our implementation so far is weather based but will keep options open and see how far our team progresses
+- updated db.pdf to reflect changes 
+==============================================================
 
 RaunakC -- 2018-11-27 17:00
 --------------------------------------------------------------
