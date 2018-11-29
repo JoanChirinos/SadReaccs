@@ -16,6 +16,12 @@ WeatherBois -- a web application for aspiring travelers to gather information su
 ==============================================================
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
+RaunakC -- 2018-11-29 18:27
+--------------------------------------------------------------
+- Separated the 'today' key in return_historical_weather() into multiple dictionaries representing hour intervals for easier consumption by the Flask app
+  - Change above was requested by Joan
+==============================================================
+
 RaunakC -- 2018-11-29 13:53
 --------------------------------------------------------------
 - Added weather descriptions

@@ -121,14 +121,15 @@ def return_historical_weather(latitude, longitude):
     Returns a dictionary with the accompanying data in this format:
     - 'date' (YYYY-MM-DD): The date, returned as a list with 16 entries.
     - 'temp' (C): The temperatures, returned as two nested dictionaries 'max' and 'min' containing lists of 16 entries each.
-    - 'today': Data fields for today:
-        - 'precipitation': List of precipitation by hour
-        - 'hour': List of hours recorded
-        - 'wind_speed': List of wind speeds recorded
-        - 'temp': List of temps recorded
-        - 'weather_icon': How the sky looks visually
-        - 'weather_desc': Description of weather
-        - 'humidity' (%): Description of humidity
+    - 'today': Data fields for today
+        - NOTE: each hour interval is represented by a number in [0,7]; each number represents a dict with these keys:
+            - 'precipitation': Precipitation recorded that hour
+            - 'hour': Hour recorded
+            - 'wind_speed': Wind speed recorded that hour
+            - 'temp': Temp recorded that hour
+            - 'weather_icon': How the sky looks visually that hour
+            - 'weather_desc': Description of weather that hour
+            - 'humidity' (%): Description of humidity that hour
     NOTE: Index len(date)-1 contains the forecast for today
     '''
     todays_date = str(date.today())
@@ -148,16 +149,18 @@ def return_historical_weather(latitude, longitude):
             'max':[],
         },
         'today':{
-            'hours':[],
-            'temp':[],
-            'precipitation':[],
-            'wind_speed':[],
-            'weather_icon': [],
-            'weather_desc':[],
-            'humidity': [],
+            0:{},
+            1:{},
+            2:{},
+            3:{},
+            4:{},
+            5:{},
+            6:{},
+            7:{},
         },
     }
 
+    hour_interval = 0
     # populate dict from result
     for item in result:
         history['date'].append(item['date'])
@@ -171,13 +174,14 @@ def return_historical_weather(latitude, longitude):
 
             # For hour-by-hour weather data on today
             if item['date'] == todays_date:
-                history['today']['hours'].append(hourly_item['time'])
-                history['today']['temp'].append(hourly_item['tempC'])
-                history['today']['precipitation'].append(hourly_item['precipMM'])
-                history['today']['wind_speed'].append(hourly_item['windspeedKmph'])
-                history['today']['humidity'].append(hourly_item['humidity'])
-                history['today']['weather_icon'].append(hourly_item['weatherIconUrl'][0]['value'])
-                history['today']['weather_desc'].append(hourly_item['weatherDesc'][0]['value'])
+                history['today'][hour_interval]['hour'] = hourly_item['time']
+                history['today'][hour_interval]['temp'] = hourly_item['tempC']
+                history['today'][hour_interval]['precipitation'] = hourly_item['precipMM']
+                history['today'][hour_interval]['wind_speed'] = hourly_item['windspeedKmph']
+                history['today'][hour_interval]['humidity'] = hourly_item['humidity']
+                history['today'][hour_interval]['weather_icon'] = hourly_item['weatherIconUrl'][0]['value']
+                history['today'][hour_interval]['weather_desc'] = hourly_item['weatherDesc'][0]['value']
+                hour_interval += 1
 
         history['precipitation'].append(precipitation)
 
