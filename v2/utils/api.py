@@ -120,6 +120,7 @@ def return_historical_weather(latitude, longitude):
         - 'wind_speed': List of wind speeds recorded
         - 'temp': List of temps recorded
         - 'weather_icon': How the sky looks visually
+        - 'weather_desc': Description of weather
     NOTE: Index len(date)-1 contains the forecast for today
     '''
     todays_date = str(date.today())
@@ -144,6 +145,7 @@ def return_historical_weather(latitude, longitude):
             'precipitation':[],
             'wind_speed':[],
             'weather_icon': [],
+            'weather_desc':[],
         },
     }
 
@@ -165,6 +167,7 @@ def return_historical_weather(latitude, longitude):
                 history['today']['precipitation'].append(hourly_item['precipMM'])
                 history['today']['wind_speed'].append(hourly_item['windspeedKmph'])
                 history['today']['weather_icon'].append(hourly_item['weatherIconUrl'][0]['value'])
+                history['today']['weather_desc'].append(hourly_item['weatherDesc'][0]['value'])
 
         history['precipitation'].append(precipitation)
 

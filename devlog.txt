@@ -4,7 +4,7 @@ Raunak Chowdhury
 Joan Chirinos
 pd 08
 ---------------------
-TravelBois -- a web application for aspiring travelers to gather information such as live weather updates on the cities they wish to visit
+WeatherBois -- a web application for aspiring travelers to gather information such as live weather updates on the cities they wish to visit
 
  ______   ______   __   __   __       ______   _______
 /_____/\ /_____/\ /_/\ /_/\ /_/\     /_____/\ /______/\
@@ -15,6 +15,11 @@ TravelBois -- a web application for aspiring travelers to gather information suc
     \____/_/ \_____\/ \___/_(   \_____\/ \_____\/ \_____\/
 ==============================================================
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+RaunakC -- 2018-11-29 13:53
+--------------------------------------------------------------
+- Added weather descriptions
+==============================================================
 
 RaunakC -- 2018-11-28 21:47
 --------------------------------------------------------------
