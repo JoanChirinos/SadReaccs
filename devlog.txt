@@ -19,6 +19,7 @@ WeatherBois -- a web application for aspiring travelers to gather information su
 RaunakC -- 2018-11-29 13:53
 --------------------------------------------------------------
 - Added weather descriptions
+- Added humidity for both Climacell and Historical Weather
 ==============================================================
 
 RaunakC -- 2018-11-28 21:47

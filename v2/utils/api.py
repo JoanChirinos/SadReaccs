@@ -64,6 +64,7 @@ def return_weather(latitude, longitude):
     - 'precipitation' (mm): The precipitation, returned as a list with 16 entries.
     - 'feels_like' (C): What the temp feels like, returned as two nested dictionaries 'max' and 'min' containing lists of 16 entries each.
     - 'wind_speed' (m/s): What the wind speed is, returned as two nested dictionaries 'max' and 'min' containing lists of 16 entries each.
+    - 'humidity' (%): What the humidity is, returned as two nested dictionaries 'max' and 'min' containing lists of 16 entries each.
 
     NOTE: Index 0 contains the forecast for today
     '''
@@ -89,6 +90,10 @@ def return_weather(latitude, longitude):
             'min':[],
             'max':[],
         },
+        'humidity':{
+            'min':[],
+            'max':[],
+        }
     }
 
     #populate dict from result
@@ -102,6 +107,8 @@ def return_weather(latitude, longitude):
         forecasts['feels_like']['max'].append(item['feels_like'][1]['max']['value'])
         forecasts['wind_speed']['min'].append(item['wind_speed'][0]['min']['value'])
         forecasts['wind_speed']['max'].append(item['wind_speed'][1]['max']['value'])
+        forecasts['humidity']['min'].append(item['wind_speed'][0]['min']['value'])
+        forecasts['humidity']['max'].append(item['wind_speed'][1]['max']['value'])
 
     return forecasts
 
@@ -121,6 +128,7 @@ def return_historical_weather(latitude, longitude):
         - 'temp': List of temps recorded
         - 'weather_icon': How the sky looks visually
         - 'weather_desc': Description of weather
+        - 'humidity' (%): Description of humidity
     NOTE: Index len(date)-1 contains the forecast for today
     '''
     todays_date = str(date.today())
@@ -146,6 +154,7 @@ def return_historical_weather(latitude, longitude):
             'wind_speed':[],
             'weather_icon': [],
             'weather_desc':[],
+            'humidity': [],
         },
     }
 
@@ -166,6 +175,7 @@ def return_historical_weather(latitude, longitude):
                 history['today']['temp'].append(hourly_item['tempC'])
                 history['today']['precipitation'].append(hourly_item['precipMM'])
                 history['today']['wind_speed'].append(hourly_item['windspeedKmph'])
+                history['today']['humidity'].append(hourly_item['humidity'])
                 history['today']['weather_icon'].append(hourly_item['weatherIconUrl'][0]['value'])
                 history['today']['weather_desc'].append(hourly_item['weatherDesc'][0]['value'])
 
