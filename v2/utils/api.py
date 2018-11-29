@@ -122,10 +122,10 @@ def return_historical_weather(latitude, longitude):
         - 'weather_icon': How the sky looks visually
     NOTE: Index len(date)-1 contains the forecast for today
     '''
-
+    todays_date = str(date.today())
     API_KEY = 'a7294c4e9c7e471aa64214148182711'
     # Provides weather data from 11/1 to 11/27
-    URL = 'https://api.worldweatheronline.com/premium/v1/past-weather.ashx?format=json&q={},{}&date=2018-11-20&enddate={}&key='.format(latitude, longitude, str(date.today()))
+    URL = 'https://api.worldweatheronline.com/premium/v1/past-weather.ashx?format=json&q={},{}&date=2018-11-20&enddate={}&key='.format(latitude, longitude, todays_date)
 
     # Get to the weather data
     result = access_info(URL, API_KEY)['data']['weather']
@@ -156,10 +156,10 @@ def return_historical_weather(latitude, longitude):
         precipitation = 0
         # Tally up all the precipitation and insert it into history
         for hourly_item in item['hourly']:
-            precipitation += float(hourly_item['precipMM'])
+            precipitation = round(precipitation + float(hourly_item['precipMM']),1)
 
             # For hour-by-hour weather data on today
-            if item['date'] == str(date.today()):
+            if item['date'] == todays_date:
                 history['today']['hours'].append(hourly_item['time'])
                 history['today']['temp'].append(hourly_item['tempC'])
                 history['today']['precipitation'].append(hourly_item['precipMM'])
