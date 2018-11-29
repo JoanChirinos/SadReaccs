@@ -15,13 +15,20 @@ TravelBois -- a web application for aspiring travelers to gather information suc
     \____/_/ \_____\/ \___/_(   \_____\/ \_____\/ \_____\/
 ==============================================================
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+RaunakC -- 2018-11-28 21:47
+--------------------------------------------------------------
+- Made the return values for the Climacell and Historical Weather APIs more friendly for Flask consumption (returns a dictionary of selected values now)
+- All APIs implemented up to this point (3 in total so far) are functional and are interconnected.
+==============================================================
+
 SusanL -- 2018-11-28 18:50
 --------------------------------------------------------------
-- updated searches database to hold long, lat, and city name as field inputs 
-- wrote db functions to add/get searches of a specific user 
-- updated design doc to no longer include zipcodeapi (we deemed it ultimately unnecessary because if you knew the zip of a place, you'd likely already know the name of the place) 
+- updated searches database to hold long, lat, and city name as field inputs
+- wrote db functions to add/get searches of a specific user
+- updated design doc to no longer include zipcodeapi (we deemed it ultimately unnecessary because if you knew the zip of a place, you'd likely already know the name of the place)
 - updated name to WeatherBois because we realized all our implementation so far is weather based but will keep options open and see how far our team progresses
-- updated db.pdf to reflect changes 
+- updated db.pdf to reflect changes
 ==============================================================
 
 RaunakC -- 2018-11-27 17:00
