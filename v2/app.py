@@ -1,4 +1,5 @@
 import os
+from time import strftime
 
 from flask import Flask, render_template, request, session, url_for, redirect, flash, jsonify
 
@@ -175,7 +176,18 @@ def results(city, lat, long):
     else:
         args['login_info'] = 'SNIPPET_login_create_bar_navbar.html'
 
-    args['weather'] = api.return_weather(lat, long)
+    weather_dict = api.return_historical_weather(lat, long)
+
+    args['today_date'] = weather_dict['date'][-1]
+    args['today_max_temp'] = weather_dict['temp']['max'][-1]
+    args['today_min_temp'] = weather_dict['temp']['min'][-1]
+
+    time_chunk = int((int(strftime('%H')) - 1) / 3)
+    args['today_image'] = weather_dict['today']['weather_icon'][time_chunk]
+    args['hour_array'] = weather_dict['today']
+    print(args['hour_array'])
+
+    args['historical_weather'] = weather_dict[-8:-1]
 
     return render_template('results.html', **args)
 

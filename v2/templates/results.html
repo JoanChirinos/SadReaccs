@@ -4,32 +4,53 @@
 
 {% block content %}
 <div style="height: 0.5vh;"></div>
-<div class="container-fluid">
-    <nav class="navbar navbar-dark bg-dark">
-        <a class="navbar-brand" href="/">TravelBois</a>
-        
-        <!-- search bar -->
-        <form class="form-inline has-search-icon" action="/search" method="get">
-            <span class="fa fa-search search-icon"></span>
-            <input type="text" class="form-control" placeholder="Where to?" id="query" name="query">
-        </form>
-        
-        <!-- account stuff -->
-        {% include login_info %} 
-    </nav>
-</div>
+{% include "SNIPPET_navbar.html" %}
 <br>
-<div class="container">
-    {% for item in weather.items() %}
-    <p>{{item[0]}}: {{item[1]}}</p>
-    {% endfor %}
+<div class="container-fluid">
     <div class="card w-100">
-        <div class="card-body">
+        
+        <div class="card-header">
             <h1 class="card-title">{{ city }}</h1>
-            
-            <p>Temp: {{weather['temp']['value']}} {{weather['temp']['units']}} </p>
-            <p></p>
+            <h5 class="cart-title"><span style="color: rgb(100, 100, 100); white-space: nowrap;">{{ today_date }}</span></h5>
         </div>
+        
+        <div class="card-body">
+            <h4 class="card-title text-center">Current Weather</h4>
+            <div class="container justify-content-center">
+                <div class="row justify-content-center h-100">
+                    <div class="col-sm-3 my-auto">
+                        <p class="card-text text-center">Max: {{ today_max_temp }} &deg;C</p>
+                    </div>
+                    <div class="col-sm-3 my-auto">
+                        <p class="card-text text-center">Min: {{ today_min_temp }} &deg;C</p>
+                    </div>
+                    <div class="col-sm-3 my-auto text-center">
+                        <img src="{{ today_image }}" class="img-fluid img-thumbnail">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="card-body">
+            <h4 class="card-title text-center">Forecast</h4>
+            <div class="container-fluid">
+                <div class="row">
+                    {% for hour in hour_array %}
+                    <div class="col-lg">
+                        <div class="card w-100">
+                            <div class="card-header">
+                                <h6 class="card-title">{{ hour['hour_chunk'] }}</h6>
+                            </div>
+                            <div class="card-body">
+                                
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        
     </div>
 </div>
 

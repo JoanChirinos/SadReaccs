@@ -4,21 +4,7 @@
 
 {% block content %}
 <div style="height: 0.5vh;"></div>
-<div class="container-fluid">
-    <nav class="navbar navbar-dark bg-dark">
-        <a class="navbar-brand" href="/">TravelBois</a>
-        
-        <!-- search bar -->
-        <form class="form-inline has-search-icon" action="/search" method="get">
-            <span class="fa fa-search search-icon"></span>
-            <input type="text" class="form-control" placeholder="Where to?" id="query" name="query">
-        </form>
-        
-        <!-- account stuff -->
-        {% include login_info %}
-        
-    </nav>
-</div>
+{% include "SNIPPET_navbar.html" %}
 <br>
 <div class="container">
     <div class="row justify-content-center">
