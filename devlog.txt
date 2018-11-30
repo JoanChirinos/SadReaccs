@@ -16,6 +16,14 @@ WeatherBois -- a web application for aspiring travelers to gather information su
 ==============================================================
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
+JoanC -- 2018-11-29 20:20
+--------------------------------------------------------------
+- Throughout the course of the day, I
+  - Worked on results route in apppy
+  - Worked on displaying correct information in /city
+  - Worked on aesthetics in /search and /city
+==============================================================
+
 RaunakC -- 2018-11-29 18:27
 --------------------------------------------------------------
 - Separated the 'today' key in return_historical_weather() into multiple dictionaries representing hour intervals for easier consumption by the Flask app
