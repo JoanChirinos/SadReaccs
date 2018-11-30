@@ -38,33 +38,33 @@ def getPw(user):
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
     c.execute("SELECT password FROM users WHERE username = '{0}'".format(user))
-    x = c.fetchone()
+    password = c.fetchone()
     db.commit()
     db.close()
-    return x[0]
+    return password[0]
 
 def getSearches(user):
     '''
-    returns all searches of a specific user
+    returns all searches of a specific user in a dictionary of longitude, latitude, city name, and time
     '''
-    x = {'long', 'lat', 'city', 'time'}
+    dict = {'long', 'lat', 'city', 'time'}
 
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
 
     c.execute("SELECT long FROM searches WHERE username = '{0}'".format(user))
-    x['long'].append(c.fetchall())
+    dict['long'].append(c.fetchall())
     c.execute("SELECT lat FROM searches WHERE username = '{0}'".format(user))
-    x['lat'].append(c.fetchall())
+    dict['lat'].append(c.fetchall())
     c.execute("SELECT city FROM searches WHERE username = '{0}'".format(user))
-    x['city'].append(c.fetchall())
+    dict['city'].append(c.fetchall())
     c.execute("SELECT timestamp FROM searches WHERE username = '{0}'".format(user))
-    x['time'].append(c.fetchall())
+    dict['time'].append(c.fetchall())
 
     db.commit()
     db.close()
 
-    return x
+    return dict
 
 def register(user, pw):
     '''
@@ -75,14 +75,27 @@ def register(user, pw):
     c.execute("INSERT INTO users VALUES('{0}','{1}')".format(user,pw))
     db.commit()
     db.close()
+    return True
 
 def addSearch(user, long, lat, city):
     '''
-    creates entry in searches database of search text, username, and timestamp
+    creates entry in searches database of longitude, latitude, city name, username, and timestamp
     '''
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
     c.execute("INSERT INTO searches VALUES ('{0}', '{1}', '{2}', '{3}', '{4}')".format(user, long, lat, city, datetime.utcnow()))
+    db.commit()
+    db.close()
+
+    return True
+
+def removeSearch(user, long, lat):
+    '''
+    creates entry in searches database of longitude, latitude, city name, username, and timestamp
+    '''
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+    c.execute("DELETE FROM searches WHERE username ='{0}', long = '{1}', lat = '{2}'".format(user, long, lat)
     db.commit()
     db.close()
 
