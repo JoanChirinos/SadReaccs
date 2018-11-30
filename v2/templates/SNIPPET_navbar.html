@@ -1,0 +1,19 @@
+<div class="container-fluid">
+    <nav class="navbar navbar-light border rounded" style="background-color: rgb(250, 250, 250);">
+        <a class="navbar-brand" href="/">WeatherBois</a>
+        
+        <!-- search bar -->
+        <form class="form-inline has-search-icon" action="/search" method="get">
+            <span class="fa fa-search search-icon"></span>
+            <input type="text" class="form-control" placeholder="Where to?" id="query" name="query">
+        </form>
+        
+        <br class="d-sm-none">
+        <br class="d-md-none">
+        <br class="d-lg-none">
+        <br class="d-xl-none">
+        
+        <!-- account stuff -->
+        {% include login_info %} 
+    </nav>
+</div>
