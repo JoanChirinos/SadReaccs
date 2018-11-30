@@ -95,7 +95,7 @@ def removeSearch(user, long, lat):
     '''
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
-    c.execute("DELETE FROM searches WHERE username ='{0}', long = '{1}', lat = '{2}'".format(user, long, lat)
+    c.execute("DELETE FROM searches WHERE username ='{0}', long = '{1}', lat = '{2}'").format(user, long, lat)
     db.commit()
     db.close()
 
