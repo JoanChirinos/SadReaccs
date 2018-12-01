@@ -16,6 +16,14 @@ WeatherBois -- a web application for aspiring travelers to gather information su
 ==============================================================
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
+JoanC -- 2018-11-30 23:38
+--------------------------------------------------------------
+- Finished /city in app.py
+- Worked on login, create_account, and results template
+  - Should be almost done. Need team input for design
+- BUG: can't save searches due to db error. Will consult Susan
+==============================================================
+
 RaunakC -- 2018-11-30 18:27
 --------------------------------------------------------------
 - In return_weather(): averaged humidity and returned humidity as a list
