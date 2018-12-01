@@ -16,6 +16,12 @@ WeatherBois -- a web application for aspiring travelers to gather information su
 ==============================================================
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
+RaunakC -- 2018-11-30 18:27
+--------------------------------------------------------------
+- In return_weather(): averaged humidity and returned humidity as a list
+- In return_weather(): fixed incorrect dates
+==============================================================
+
 JoanC -- 2018-11-29 20:20
 --------------------------------------------------------------
 - Throughout the course of the day, I
