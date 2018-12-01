@@ -166,8 +166,11 @@ def search():
 
 @app.route('/city/<city>/<lat>/<long>')
 def results(city, lat, long):
+    '''
+    Dynamic routing for results page
+    Shows weather information for a given city, lat, and long
+    '''
     args = dict()
-
     args['city'] = city
     args['username'] = ''
     if 'username' in session:
@@ -178,17 +181,28 @@ def results(city, lat, long):
 
     weather_dict = api.return_historical_weather(lat, long)
 
+    args['old_weather'] = weather_dict
+    print('\n\nOLD WEATHER\n{}\n\n'.format(weather_dict))
+    for item in weather_dict.items():
+        print('{}\n\n'.format(item))
+    print('\n\nEND OLD WEATHER\n\n')
+
+
     args['today_date'] = weather_dict['date'][-1]
     args['today_max_temp'] = weather_dict['temp']['max'][-1]
     args['today_min_temp'] = weather_dict['temp']['min'][-1]
 
-    time_chunk = int((int(strftime('%H')) - 1) / 3)
-    args['today_image'] = weather_dict['today']['weather_icon'][time_chunk]
-    args['hour_array'] = weather_dict['today']
-    print(args['hour_array'])
+    time_chunk = int((int(strftime('%H')) / 3) - 1)
+    args['today_image'] = weather_dict['today'][time_chunk]['weather_icon']
 
-    args['historical_weather'] = weather_dict[-8:-1]
+    forecast = api.return_weather(lat, long)
+    # print('\n\nSTARTING FORECAST\n')
+    # print('\n{}\n\n'.format(forecast))
+    # for i in forecast.items():
+    #     print('{}\n'.format(i))
+    # print('\n\nEND FORECAST\n')
 
+    args['daily_forecast'] = forecast
     return render_template('results.html', **args)
 
 if __name__ == '__main__':

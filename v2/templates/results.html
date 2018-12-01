@@ -32,17 +32,179 @@
         </div>
         <hr>
         <div class="card-body">
-            <h4 class="card-title text-center">Forecast</h4>
+            <h4 class="card-title text-center">Daily Forecast</h4>
             <div class="container-fluid">
                 <div class="row">
-                    {% for hour in hour_array %}
-                    <div class="col-lg">
-                        <div class="card w-100">
-                            <div class="card-header">
-                                <h6 class="card-title">{{ hour['hour_chunk'] }}</h6>
+                    {% for index in range(4) %}
+                    <div class="col-lg-3">
+                        <div class="card w-100 my-1">
+                            <div class="card-header text-center">
+                                <h5 class="card-title">{{ daily_forecast['date'][index] }}</h5>
                             </div>
                             <div class="card-body">
-                                
+                                <h6 class="card-title text-center" style="text-decoration: underline;">Temperature</h6>
+                                <div class="container justify-content-center">
+                                    <div class="row">
+                                        <div class="col-sm text-center">
+                                            <div class="my-auto">
+                                                <p class="card-text text-center">Max: {{ daily_forecast['temp']['max'][index] }}&nbsp;&deg;C</p>
+                                            </div>
+                                            <div class="my-auto">
+                                                <p class="card-text text-center">Feels like: {{ daily_forecast['feels_like']['max'][index] }}&nbsp;&deg;C</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm text-center">
+                                            <div class="my-auto">
+                                                <p class="card-text text-center">Min: {{ daily_forecast['temp']['min'][index] }}&nbsp;&deg;C</p>
+                                            </div>
+                                            <div class="my-auto">
+                                                <p class="card-text text-center">Feels like: {{ daily_forecast['feels_like']['min'][index] }}&nbsp;&deg;C</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="card-body">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-sm text-center mb-2 my-md-0">
+                                            <h6 class="card-title" style="text-decoration: underline;">Precipitation</h6>
+                                            <p class="card-text">{{ daily_forecast['precipitation'][index] }} mm</p>
+                                        </div>
+                                        <div class="col-sm text-center mb-2 my-md-0">
+                                            <h6 class="card-title" style="text-decoration: underline;">Average Humidity</h6>
+                                            <p class="card-text">{{ daily_forecast['humidity'][index] }} %</p>
+                                        </div>
+                                        <div class="col-sm text-center">
+                                            <h6 class="card-title" style="text-decoration: underline;">Wind Speed</h6>
+                                            <p class="card-text">Max: {{ daily_forecast['wind_speed']['max'][index] }}&nbsp;km/h</p>
+                                            <p class="card-text">Min: {{ daily_forecast['wind_speed']['min'][index] }}&nbsp;km/h</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="row">
+                    {% for index in range(4, 7) %}
+                    <div class="col-lg-4">
+                        <div class="card w-100 my-1">
+                            <div class="card-header text-center">
+                                <h5 class="card-title">{{ daily_forecast['date'][index] }}</h5>
+                            </div>
+                            <div class="card-body">
+                                <h6 class="card-title text-center" style="text-decoration: underline;">Temperature</h6>
+                                <div class="container justify-content-center">
+                                    <div class="row">
+                                        <div class="col-sm text-center">
+                                            <div class="my-auto">
+                                                <p class="card-text text-center">Max: {{ daily_forecast['temp']['max'][index] }}&nbsp;&deg;C</p>
+                                            </div>
+                                            <div class="my-auto">
+                                                <p class="card-text text-center">Feels like: {{ daily_forecast['feels_like']['max'][index] }}&nbsp;&deg;C</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm text-center">
+                                            <div class="my-auto">
+                                                <p class="card-text text-center">Min: {{ daily_forecast['temp']['min'][index] }}&nbsp;&deg;C</p>
+                                            </div>
+                                            <div class="my-auto">
+                                                <p class="card-text text-center">Feels like: {{ daily_forecast['feels_like']['min'][index] }}&nbsp;&deg;C</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="card-body">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-sm text-center mb-2 my-md-0">
+                                            <h6 class="card-title" style="text-decoration: underline;">Precipitation</h6>
+                                            <p class="card-text">{{ daily_forecast['precipitation'][index] }} mm</p>
+                                        </div>
+                                        <div class="col-sm text-center mb-2 my-md-0">
+                                            <h6 class="card-title" style="text-decoration: underline;">Average Humidity</h6>
+                                            <p class="card-text">{{ daily_forecast['humidity'][index] }} %</p>
+                                        </div>
+                                        <div class="col-sm text-center">
+                                            <h6 class="card-title" style="text-decoration: underline;">Wind Speed</h6>
+                                            <p class="card-text">Max: {{ daily_forecast['wind_speed']['max'][index] }}&nbsp;km/h</p>
+                                            <p class="card-text">Min: {{ daily_forecast['wind_speed']['min'][index] }}&nbsp;km/h</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+            
+            <hr>
+            
+        <div class="card-body">
+            <div class="container-fluid">
+                <h4 class="card-title text-center">Last Week's Weather</h4>
+                <div class="row">
+                    {% for index in range(-9, -5, 1) %}
+                    <div class="col-lg-3">
+                        <div class="card w-100 my-1">
+                            <div class="card-header text-center">
+                                <h5 class="card-title">{{ old_weather['date'][index] }}</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="container justify-content-center">
+                                    <div class="row">
+                                        <div class="col-sm text-center mb-2 my-md-0">
+                                            <div class="my-auto">
+                                                <h6 class="card-title text-center" style="text-decoration: underline;">Temperature</h6>
+                                                <p class="card-text text-center">Max: {{ old_weather['temp']['max'][index] }}&nbsp;&deg;C</p>
+                                                <p class="card-text text-center">Min: {{ old_weather['temp']['min'][index] }}&nbsp;&deg;C</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm text-center">
+                                            <div class="my-auto">
+                                                <h6 class="card-title" style="text-decoration: underline;">Precipitation</h6>
+                                                <p class="card-text">{{ old_weather['precipitation'][index] }} mm</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="row">
+                    {% for index in range(-5, -2, 1) %}
+                    <div class="col-lg-4">
+                        <div class="card w-100 my-1">
+                            <div class="card-header text-center">
+                                <h5 class="card-title">{{ old_weather['date'][index] }}</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="container justify-content-center">
+                                    <div class="row">
+                                        <div class="col-sm text-center mb-2 my-md-0">
+                                            <div class="my-auto">
+                                                <h6 class="card-title text-center" style="text-decoration: underline;">Temperature</h6>
+                                                <p class="card-text text-center">Max: {{ old_weather['temp']['max'][index] }}&nbsp;&deg;C</p>
+                                                <p class="card-text text-center">Min: {{ old_weather['temp']['min'][index] }}&nbsp;&deg;C</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm text-center">
+                                            <div class="my-auto">
+                                                <h6 class="card-title" style="text-decoration: underline;">Precipitation</h6>
+                                                <p class="card-text">{{ old_weather['precipitation'][index] }} mm</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
