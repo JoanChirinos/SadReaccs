@@ -180,12 +180,17 @@ def results(city, lat, long):
         args['login_info'] = 'SNIPPET_login_create_bar_navbar.html'
 
     weather_dict = api.return_historical_weather(lat, long)
+    today = weather_dict['today']
+    args['today'] = today
+    print('\n\nTODAY\'S WEATHER\n\n{}\n\n'.format(today))
+    for item in today.items():
+        print('{}:\n\t{}'.format(item[0], item[1]))
 
     args['old_weather'] = weather_dict
-    print('\n\nOLD WEATHER\n{}\n\n'.format(weather_dict))
-    for item in weather_dict.items():
-        print('{}\n\n'.format(item))
-    print('\n\nEND OLD WEATHER\n\n')
+    # print('\n\nOLD WEATHER\n{}\n\n'.format(weather_dict))
+    # for item in weather_dict.items():
+    #     print('{}\n\n'.format(item))
+    # print('\n\nEND OLD WEATHER\n\n')
 
 
     args['today_date'] = weather_dict['date'][-1]
@@ -202,8 +207,22 @@ def results(city, lat, long):
     #     print('{}\n'.format(i))
     # print('\n\nEND FORECAST\n')
 
+    args['time_chunks'] = ['12:00&nbsp;am&nbsp;-&nbsp;2:59&nbsp;am', '3:00 am - 5:59 am', '6:00 am - 8:59 am', '9:00 am - 11:59 am', '12:00 pm - 2:59 pm', '3:00 pm - 5:59 pm', '6:00 pm - 8:59 pm', '9:00 pm - 11:59 pm']
+
     args['daily_forecast'] = forecast
+    args['lat'] = lat
+    args['long'] = long
     return render_template('results.html', **args)
+
+@app.route('/save/<city>/<lat>/<long>')
+def save(city, lat, long):
+    if 'username' in session:
+        dbm.addSearch(session['username'], long, lat, city)
+        return redirect(url_for('results', city=city, long=long, lat=lat))
+    else:
+        print('\n\n\nYEETING\n\n\n')
+        flash('You must be logged in to do that!')
+        return redirect(url_for('results', city=city, long=long, lat=lat))
 
 if __name__ == '__main__':
     app.secret_key = os.urandom(32)
