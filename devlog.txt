@@ -16,6 +16,13 @@ WeatherBois -- a web application for aspiring travelers to gather information su
 ==============================================================
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
+SusanL -- 2018-12-02 15:46
+--------------------------------------------------------------
+- revisited points on website 
+- corrected Joan's bug and updated db (simply had to recreate the db because we updated the number of columns in searches) 
+- informed team of notes + suggestions for layout and asked for input on possible extra features 
+==============================================================
+
 JoanC -- 2018-11-30 23:38
 --------------------------------------------------------------
 - Finished /city in app.py
