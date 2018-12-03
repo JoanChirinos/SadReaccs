@@ -61,7 +61,7 @@ def getSearches(user):
         dict['city'] = c.fetchall()
         c.execute("SELECT time FROM searches WHERE username = '{0}'".format(user))
         dict['time'] = c.fetchall()
-    catch:
+    except:
         return False
 
     print("THIS WORKS")
