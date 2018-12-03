@@ -228,8 +228,21 @@ def save(city, lat, long):
 def saved_searches():
     if 'username' in session:
         searches = db.getSearches(session['username'])
+
+        l = len(searches['long'])
+
+        if l == 0:
+            flash('You don\'t have any saved cities!')
+
+        args = {}
+        args['searches'] = searches
+        args['login_info'] = 'SNIPPET_user_info_navbar.html'
+        args['username'] = session['username']
+        args['length'] = l
+
         print('\n\nSEARCHES:\n\n{}\n\n'.format(searches))
-        return render_template('saved_searches.html')
+        print('\n\nLENGTH: {}\n\n'.format(args['length']))
+        return render_template('saved_searches.html', **args)
     else:
         flash('You must be logged in to to that!')
         return redirect(url_for('index'))

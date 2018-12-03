@@ -6,5 +6,24 @@
 <div style="height: 0.5vh;"></div>
 {% include "SNIPPET_navbar.html" %}
 <br>
+<br>
+<br>
+<br>
+<div class="container">
+    <div class="row">
+        <div class="w-100">
+            {% for index in range(length) %}
+            <div class="card" style="w-100">
+                <div class="card-body">
+                    <a href="/city/{{ searches['city'][index] }}/{{ searches['lat'][index] }}/{{ searches['long'][index] }}">
+                        {{ searches['city'][index][0] }}
+                    </a>
+                </div>
+            </div>
+            <br>
+            {% endfor %}
+        </div>
+    </div>
+</div>
 
 {% endblock %}
