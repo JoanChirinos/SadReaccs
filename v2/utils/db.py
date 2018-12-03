@@ -54,6 +54,7 @@ def getSearches(user):
 
     print("THIS WORKS")
     c.execute("SELECT long FROM searches WHERE username = '{0}'".format(user))
+    #c.execute("SELECT long FROM searches WHERE username = '{0}' WHERE NOT EXISTS (SELECT * FROM searches WHERE username = '{0}', longitude = '{1}')".format(user, long))
     dict['long'] = c.fetchall()
     c.execute("SELECT lat FROM searches WHERE username = '{0}'".format(user))
     dict['lat'] = c.fetchall()
