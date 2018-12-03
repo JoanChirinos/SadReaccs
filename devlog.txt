@@ -16,7 +16,13 @@ WeatherBois -- a web application for aspiring travelers to gather information su
 ==============================================================
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
-RaunakC -- 2018-12-03 18:27
+JoanC -- 2018-12-03 14:01
+--------------------------------------------------------------
+- Worked on displaying saved searches
+- App.py logic
+==============================================================
+
+RaunakC -- 2018-12-03 10:27
 --------------------------------------------------------------
 - Automated adjusting of the interval in Historical Weather API call (always 7 days, adjusts call every day)
 ==============================================================
