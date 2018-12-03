@@ -16,6 +16,12 @@ WeatherBois -- a web application for aspiring travelers to gather information su
 ==============================================================
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
+RaunakC -- 2018-12-03 14:03
+--------------------------------------------------------------
+- Updated all APIs with collecting API keys from respective text files.
+- Updated README with respective content.
+==============================================================
+
 JoanC -- 2018-12-03 14:01
 --------------------------------------------------------------
 - Worked on displaying saved searches

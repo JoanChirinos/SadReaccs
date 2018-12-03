@@ -42,10 +42,16 @@ def search_city(query):
         # replace all inner whitespace with %20 for API request
         query = query.replace(' ', '%20')
 
+        # use the user's api key; if no key found, use a default
+        file = open('../geodb.txt', 'r').read()
+        apikey = file.strip()
+        if apikey == '':
+            apikey = 'tzSzy9eFlYmsh5iRSqqFq3dIdKanp19jDRIjsnaPw5zvVMWL5N'
+
         # set up headers
         headers = {}
-        headers['X-Mashape-Key'] = 'tzSzy9eFlYmsh5iRSqqFq3dIdKanp19jDRIjsnaPw5zvVMWL5N'
         headers['X-Mashape-Host'] = 'wft-geo-db.p.mashape.com'
+        headers['X-Mashape-Key'] = apikey
 
         # do the request
         URL = 'https://wft-geo-db.p.mashape.com/v1/geo/cities?namePrefix={}&offset=0&limit=10'.format(query)
@@ -72,9 +78,16 @@ def return_weather(latitude, longitude):
     NOTE: Index 0 contains the forecast for today
     '''
     try:
+        # use the user's api key; if no key found, use a default
+        file = open('../climacell.txt', 'r').read()
+        apikey = file.strip()
+        if apikey == '':
+            apikey = 'dsZbfxJQ2fyXMLhnDJezjoeQJ77kiqSI'
+
         # set up headers
         headers = {}
-        headers['apikey'] = 'dsZbfxJQ2fyXMLhnDJezjoeQJ77kiqSI'
+        headers['apikey'] = apikey
+
         fields= 'temp,feels_like,humidity,wind_speed,precipitation_accumulation'
         URL = 'https://api2.climacell.co/v2/weather/forecast/daily?lat={}&lon={}&fields={}'.format(latitude, longitude,fields)
         result = access_info(URL, **headers)
@@ -150,7 +163,12 @@ def return_historical_weather(latitude, longitude):
         last_week = date - datetime.timedelta(days=7)
         last_weeks_date = last_week.strftime('%Y-%m-%d')
 
-        API_KEY = 'a7294c4e9c7e471aa64214148182711'
+        # use the user's api key; if no key found, use a default
+        file = open('../worldweatheronline.txt', 'r').read()
+        API_KEY = file.strip()
+        if API_KEY == '':
+            API_KEY = 'a7294c4e9c7e471aa64214148182711'
+
         # Provides weather data from 11/1 to 11/27
         URL = 'https://api.worldweatheronline.com/premium/v1/past-weather.ashx?format=json&q={},{}&date={}&enddate={}&key='.format(latitude, longitude, last_weeks_date, todays_date)
 
@@ -207,5 +225,6 @@ def return_historical_weather(latitude, longitude):
         return 'Something broke'
 
 if __name__ == '__main__':
+    print(search_city('new york'))
     print(return_weather(48, 27))
     print(return_historical_weather(40,74))
