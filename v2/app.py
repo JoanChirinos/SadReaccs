@@ -3,7 +3,7 @@ from time import strftime
 
 from flask import Flask, render_template, request, session, url_for, redirect, flash, jsonify
 
-from utils import api, db as dbm
+from utils import api, db
 
 app = Flask(__name__) #create instance of class Flask
 
@@ -73,11 +73,11 @@ def auth():
     username = request.form['username']
     password = request.form['password']
 
-    if not dbm.isUser(username):
+    if not db.isUser(username):
         flash('Invalid username or password!')
         return redirect(url_for('login'))
 
-    if dbm.getPw(username) == password:
+    if db.getPw(username) == password:
         session['username'] = username
         return redirect(url_for('index'))
 
@@ -128,12 +128,12 @@ def create_action():
         flash('Passwords don\'t match!')
         return redirect(url_for('create'))
 
-    if dbm.isUser(username):
+    if db.isUser(username):
         flash('Username already in use')
         return redirect(url_for('create'))
 
     # if you get here, ur successful!
-    dbm.register(username, password)
+    db.register(username, password)
 
     print('CREATE ACCOUNT SUCCESS')
 
@@ -217,12 +217,22 @@ def results(city, lat, long):
 @app.route('/save/<city>/<lat>/<long>')
 def save(city, lat, long):
     if 'username' in session:
-        dbm.addSearch(session['username'], long, lat, city)
+        db.addSearch(session['username'], long, lat, city)
         return redirect(url_for('results', city=city, long=long, lat=lat))
     else:
         print('\n\n\nYEETING\n\n\n')
         flash('You must be logged in to do that!')
         return redirect(url_for('results', city=city, long=long, lat=lat))
+
+@app.route('/saved_searches')
+def saved_searches():
+    if 'username' in session:
+        searches = db.getSearches(session['username'])
+        print('\n\nSEARCHES:\n\n{}\n\n'.format(searches))
+        return render_template('saved_searches.html')
+    else:
+        flash('You must be logged in to to that!')
+        return redirect(url_for('index'))
 
 if __name__ == '__main__':
     app.secret_key = os.urandom(32)
