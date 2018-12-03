@@ -16,6 +16,11 @@ WeatherBois -- a web application for aspiring travelers to gather information su
 ==============================================================
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
+RaunakC -- 2018-12-03 18:27
+--------------------------------------------------------------
+- Automated adjusting of the interval in Historical Weather API call (always 7 days, adjusts call every day)
+==============================================================
+
 JoanC -- 2018-12-03 02:21
 --------------------------------------------------------------
 - Started working on saved_searches site, but found a bug and contacted Susan
@@ -23,9 +28,9 @@ JoanC -- 2018-12-03 02:21
 
 SusanL -- 2018-12-02 15:46
 --------------------------------------------------------------
-- revisited points on website 
-- corrected Joan's bug and updated db (simply had to recreate the db because we updated the number of columns in searches) 
-- informed team of notes + suggestions for layout and asked for input on possible extra features 
+- revisited points on website
+- corrected Joan's bug and updated db (simply had to recreate the db because we updated the number of columns in searches)
+- informed team of notes + suggestions for layout and asked for input on possible extra features
 ==============================================================
 
 JoanC -- 2018-11-30 23:38

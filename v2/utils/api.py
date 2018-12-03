@@ -143,10 +143,16 @@ def return_historical_weather(latitude, longitude):
     NOTE: Index len(date)-1 contains the forecast for today
     '''
     try:
-        todays_date = str(datetime.date.today())
+        # set up dates
+        date = datetime.datetime.now()
+        todays_date = date.strftime('%Y-%m-%d')
+        # go back a week and plug that date in as well
+        last_week = date - datetime.timedelta(days=7)
+        last_weeks_date = last_week.strftime('%Y-%m-%d')
+
         API_KEY = 'a7294c4e9c7e471aa64214148182711'
         # Provides weather data from 11/1 to 11/27
-        URL = 'https://api.worldweatheronline.com/premium/v1/past-weather.ashx?format=json&q={},{}&date=2018-11-20&enddate={}&key='.format(latitude, longitude, todays_date)
+        URL = 'https://api.worldweatheronline.com/premium/v1/past-weather.ashx?format=json&q={},{}&date={}&enddate={}&key='.format(latitude, longitude, last_weeks_date, todays_date)
 
         # Get to the weather data
         result = access_info(URL, API_KEY)['data']['weather']
