@@ -9,11 +9,17 @@ welcome! the title of our project is **weatherbois** and in short, it allows use
    1. launch the venv using ". path/<venv name>/bin/activate"
    2. pip install flask
 
+## Instructions for cloning repo:
+1. go to [PM Lin's repo](https://github.com/slin15/SadReaccs)
+2. copy the ssh key under **clone or download**
+3. open up a bash session and navigate to where you'd like to house the repo 
+4. type `git clone` and your ssh key
+
 ## Instructions for launch:
-   1. start up your venv by typing the command . path/<venv name>/bin/activate
-   2. cd to the project repository/v2
-   3. type in python app.py
-   4. go to the localhost:5000 address on your chosen browser
+1. start up your venv by typing the command . path/<venv name>/bin/activate
+2. cd to the project repository/v2
+3. type in python app.py
+4. go to the localhost:5000 address on your chosen browser
 
 ## API Key Instructions
 
