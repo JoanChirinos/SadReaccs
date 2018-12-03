@@ -85,7 +85,8 @@ def addSearch(user, long, lat, city):
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
     #c.execute("SELECT long FROM searches WHERE username = '{0}' WHERE NOT EXISTS (SELECT * FROM searches WHERE username = '{0}', longitude = '{1}')".format(user, long))
-    c.execute("INSERT INTO searches VALUES ('{0}', '{1}', '{2}', '{3}', '{4}') WHERE NOT EXISTS (SELECT * FROM searches WHERE username = '{0}', city = '{3}')".format(user, long, lat, city, datetime.utcnow()))
+    c.execute("UPDATE searches SET time = '{2}' WHERE username = '{0}' AND city = '{1}'".format(user, city, datetime.utcnow()))
+    c.execute("INSERT INTO searches SELECT '{0}', '{1}', '{2}', '{3}', '{4}' WHERE NOT EXISTS (SELECT city from searches WHERE username = '{0}' AND city = '{3}')".format(user, long, lat, city, datetime.utcnow()))
     db.commit()
     db.close()
 
