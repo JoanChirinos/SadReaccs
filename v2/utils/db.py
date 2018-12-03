@@ -12,7 +12,7 @@ def create_db():
     c = db.cursor()               #facilitate db ops
 
     c.execute("CREATE TABLE IF NOT EXISTS users(username TEXT, password TEXT)")
-    c.execute("CREATE TABLE IF NOT EXISTS searches(username TEXT, long INTEGER, lat INTEGER, city TEXT, time TEXT)")
+    c.execute("CREATE TABLE IF NOT EXISTS searches(username TEXT, long INTEGER, lat INTEGER, city TEXT PRIMARY KEY, time TEXT)")
 
     db.commit()
     db.close()
@@ -52,16 +52,18 @@ def getSearches(user):
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
 
-    print("THIS WORKS")
-    c.execute("SELECT long FROM searches WHERE username = '{0}'".format(user))
-    #c.execute("SELECT long FROM searches WHERE username = '{0}' WHERE NOT EXISTS (SELECT * FROM searches WHERE username = '{0}', longitude = '{1}')".format(user, long))
-    dict['long'] = c.fetchall()
-    c.execute("SELECT lat FROM searches WHERE username = '{0}'".format(user))
-    dict['lat'] = c.fetchall()
-    c.execute("SELECT city FROM searches WHERE username = '{0}'".format(user))
-    dict['city'] = c.fetchall()
-    c.execute("SELECT time FROM searches WHERE username = '{0}'".format(user))
-    dict['time'] = c.fetchall()
+    try:
+        c.execute("SELECT long FROM searches WHERE username = '{0}'".format(user))
+        dict['long'] = c.fetchall()
+        c.execute("SELECT lat FROM searches WHERE username = '{0}'".format(user))
+        dict['lat'] = c.fetchall()
+        c.execute("SELECT city FROM searches WHERE username = '{0}'".format(user))
+        dict['city'] = c.fetchall()
+        c.execute("SELECT time FROM searches WHERE username = '{0}'".format(user))
+        dict['time'] = c.fetchall()
+    catch:
+        return False
+
     print("THIS WORKS")
     db.commit()
     db.close()
