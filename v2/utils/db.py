@@ -47,20 +47,21 @@ def getSearches(user):
     '''
     returns all searches of a specific user in a dictionary of longitude, latitude, city name, and time
     '''
-    dict = {'long', 'lat', 'city', 'time'}
+    dict = {'long':[], 'lat':[], 'city':[], 'time':[]}
 
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
 
+    print("THIS WORKS")
     c.execute("SELECT long FROM searches WHERE username = '{0}'".format(user))
-    dict['long'].append(c.fetchall())
+    dict['long'] = c.fetchall()
     c.execute("SELECT lat FROM searches WHERE username = '{0}'".format(user))
-    dict['lat'].append(c.fetchall())
+    dict['lat'] = c.fetchall()
     c.execute("SELECT city FROM searches WHERE username = '{0}'".format(user))
-    dict['city'].append(c.fetchall())
-    c.execute("SELECT timestamp FROM searches WHERE username = '{0}'".format(user))
-    dict['time'].append(c.fetchall())
-
+    dict['city'] = c.fetchall()
+    c.execute("SELECT time FROM searches WHERE username = '{0}'".format(user))
+    dict['time'] = c.fetchall()
+    print("THIS WORKS")
     db.commit()
     db.close()
 
