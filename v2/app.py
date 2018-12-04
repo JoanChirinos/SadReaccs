@@ -191,7 +191,6 @@ def results(city, lat, long):
     print('\n\nTODAY\'S WEATHER\n\n{}\n\n'.format(today))
     for item in today.items():
         print('{}:\n\t{}'.format(item[0], item[1]))
-
     args['old_weather'] = weather_dict
     # print('\n\nOLD WEATHER\n{}\n\n'.format(weather_dict))
     # for item in weather_dict.items():
@@ -277,8 +276,7 @@ def error():
         args['login_info'] = 'SNIPPET_login_create_bar_navbar.html'
     messages = ['Dang it! We didn\'t mean to do that!', 'Nani? That wasn\'t supposed to happen!', 'Hey there buddy. That\'s my fault.', 'I really didn\'t mean to do that!', 'Dang it! I swear, this has\'t happened before!']
     args['message'] = choice(messages)
-    #args['image_source'] = api.getDogImage()
-    args['image_source'] = 'https://images.dog.ceo/breeds/affenpinscher/n02110627_3841.jpg'
+    args['image_source'] = api.return_random_dog()
 
     return render_template('error.html', **args)
 
