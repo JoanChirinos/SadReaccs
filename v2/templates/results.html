@@ -19,7 +19,12 @@
             <a href="/save/{{city}}/{{lat}}/{{long}}" class="btn btn-success">Save this search</a>
             {% set msgs = get_flashed_messages() %}
             {% for msg in msgs %}
-            <div class="alert alert-warning my-1">{{msg}}</div>
+            <div class="alert alert-warning my-1">
+                {{msg}}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
             {% endfor %}
         </div>
 
