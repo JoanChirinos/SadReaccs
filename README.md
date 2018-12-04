@@ -1,6 +1,14 @@
 # SadReaccs - Joan Chirinos, Raunak Chowdhuy, Susan Lin
 
-welcome! the title of our project is **weatherbois** and in short, it allows users to search cities by name and view the current/past/future climate and weather. the app will also provide historical data on the country in question. This is intended to help travelers can make the most informed decisions about the climate of where they want to go.
+Welcome! The title of our project is **weatherbois** and in short, it allows users to search cities by name and view the current/past/future climate and weather. The app will also provide historical data on the country in question. This is intended to help travelers can make the most informed decisions about the climate of where they want to go.
+
+Our project utilizes three APIs: GeoDB, World Weather Online, and Climacell. The descriptions are below and the instructions to use each may be found in **API Key Instructions** after **Instructions for launch**
+
+API | Description
+--- | ---
+GeoDB | access to geographical data of a given location (i.e. city name)
+Climacell | access to realtime weather and forecasts
+World Weather Online | access to historical weather data
 
 ## Dependencies:
 - We are using **Python3**
@@ -16,7 +24,7 @@ welcome! the title of our project is **weatherbois** and in short, it allows use
 - type `git clone` and your ssh key
 
 ## Instructions for launch:
-- start up your venv by typing the command . path/<venv name>/bin/activate
+- start up your venv by typing `. path/<venv name>/bin/activate`
 - cd to the project repository/v2
 - type in python app.py
 - go to the localhost:5000 address on your chosen browser

@@ -15,6 +15,12 @@ WeatherBois -- a web application for aspiring travelers to gather information su
     \____/_/ \_____\/ \___/_(   \_____\/ \_____\/ \_____\/
 ==============================================================
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+SusanL -- 2018-12-04 04:34
+--------------------------------------------------------------
+- fixed remove search functionality in DB 
+- updated README.md 
+- updated design doc to note API drawbacks 
+==============================================================
 
 JoanC -- 2018-12-03 23:03
 --------------------------------------------------------------
@@ -25,6 +31,12 @@ JoanC -- 2018-12-03 23:03
 JoanC -- 2018-12-03 22:30
 --------------------------------------------------------------
 - Created error page
+==============================================================
+
+SusanL -- 2018-12-03 16:32
+--------------------------------------------------------------
+- robustified add search functionality by making sure repeats are not permitted 
+- if city is saved repeatedly, only the timestamp of the search is updated 
 ==============================================================
 
 RaunakC -- 2018-12-03 14:03
