@@ -16,6 +16,12 @@ WeatherBois -- a web application for aspiring travelers to gather information su
 ==============================================================
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
+JoanC -- 2018-12-03 23:03
+--------------------------------------------------------------
+- Added remove search functionality to page
+- Found that remove search doesn't work in db.py
+==============================================================
+
 JoanC -- 2018-12-03 22:30
 --------------------------------------------------------------
 - Created error page
