@@ -23,6 +23,20 @@ def access_info(URL_STUB, API_KEY = None, **kwargs):
     info = json.loads(response)
     return info
 
+def write_error(*args):
+    '''
+    Writes the error to a text file (ERROR_LOG.txt) if any of the API functions throw an error.
+    Params: *args for taking in the error message and any supplementary information to log.
+    '''
+    f = open('../ERROR_LOG.txt', 'a')
+    time_now = datetime.datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')
+    f.write('START ERROR\ntime: {} UTC\n'.format(time_now))
+    f.write('breakage info:\n')
+    for arg in args:
+        f.write('{}\n'.format(arg))
+    f.write('END ERROR\n\n')
+    f.close()
+
 def search_city(query):
     '''
     Feeds the query through the GeoDB API and returns a result.
@@ -58,7 +72,8 @@ def search_city(query):
         result = access_info(URL, **headers)['data']
         # return jsonify(result)
         return result
-    except:
+    except Exception as error:
+        write_error(error)
         return 'Something broke'
 
 def return_weather(latitude, longitude):
@@ -81,8 +96,8 @@ def return_weather(latitude, longitude):
         # use the user's api key; if no key found, use a default
         file = open('../climacell.txt', 'r').read()
         apikey = file.strip()
-        if apikey == '':
-            apikey = 'dsZbfxJQ2fyXMLhnDJezjoeQJ77kiqSI'
+        # if apikey == '':
+        #     apikey = 'dsZbfxJQ2fyXMLhnDJezjoeQJ77kiqSI'
 
         # set up headers
         headers = {}
@@ -132,7 +147,8 @@ def return_weather(latitude, longitude):
             forecasts['humidity'].append(average)
 
         return forecasts
-    except:
+    except Exception as error:
+        write_error(error)
         return 'Something broke'
 
 def return_historical_weather(latitude, longitude):
@@ -221,7 +237,8 @@ def return_historical_weather(latitude, longitude):
             history['precipitation'].append(precipitation)
 
         return history
-    except:
+    except Exception as error:
+        write_error(error)
         return 'Something broke'
 
 if __name__ == '__main__':
