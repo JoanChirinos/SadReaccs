@@ -60,7 +60,7 @@ def search_city(query):
         file = open('../geodb.txt', 'r').read()
         apikey = file.strip()
         if apikey == '':
-            apikey = 'tzSzy9eFlYmsh5iRSqqFq3dIdKanp19jDRIjsnaPw5zvVMWL5N'
+            return 'No API key found'
 
         # set up headers
         headers = {}
@@ -97,7 +97,7 @@ def return_weather(latitude, longitude):
         file = open('../climacell.txt', 'r').read()
         apikey = file.strip()
         if apikey == '':
-            apikey = 'dsZbfxJQ2fyXMLhnDJezjoeQJ77kiqSI'
+            return 'No API key found'
 
         # set up headers
         headers = {}
@@ -183,7 +183,7 @@ def return_historical_weather(latitude, longitude):
         file = open('../worldweatheronline.txt', 'r').read()
         API_KEY = file.strip()
         if API_KEY == '':
-            API_KEY = 'a7294c4e9c7e471aa64214148182711'
+            return 'No API key found'
 
         # Provides weather data from 11/1 to 11/27
         URL = 'https://api.worldweatheronline.com/premium/v1/past-weather.ashx?format=json&q={},{}&date={}&enddate={}&key='.format(latitude, longitude, last_weeks_date, todays_date)
@@ -251,7 +251,7 @@ def return_random_dog():
 
 
 if __name__ == '__main__':
-    # print(search_city('new york'))
-    # print(return_weather(48, 27))
-    # print(return_historical_weather(40,74))
+    print(search_city('new york'))
+    print(return_weather(48, 27))
+    print(return_historical_weather(40,74))
     print(return_random_dog())

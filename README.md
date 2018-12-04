@@ -30,6 +30,9 @@ Dogs API | pictures of dogs
 - type in python app.py
 - go to the localhost:5000 address on your chosen browser
 
+## Instructions for adding API keys:
+- Add the text files (`geodb.txt`, `worldweatheronline.txt`, and `climacell.txt`) to the root of the repo. 
+
 ## API Key Instructions
 
 ### GeoDB -- 432,000 requests/day
