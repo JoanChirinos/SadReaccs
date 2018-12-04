@@ -4,6 +4,7 @@ from time import strftime
 from flask import Flask, render_template, request, session, url_for, redirect, flash, jsonify
 
 from utils import api, db
+from random import choice
 
 app = Flask(__name__) #create instance of class Flask
 
@@ -155,6 +156,8 @@ def search():
     # query and empty string check
     query = request.args['query']
     result = api.search_city(query)
+    if result == 'Something broke':
+        return redirect(url_for('error'))
     if result:
         return render_template('search.html', cities=result, login_info=login_info, username=username)
     elif result == []:
@@ -180,6 +183,9 @@ def results(city, lat, long):
         args['login_info'] = 'SNIPPET_login_create_bar_navbar.html'
 
     weather_dict = api.return_historical_weather(lat, long)
+    if weather_dict == 'Something broke':
+        return redirect(url_for('error'))
+
     today = weather_dict['today']
     args['today'] = today
     print('\n\nTODAY\'S WEATHER\n\n{}\n\n'.format(today))
@@ -201,6 +207,8 @@ def results(city, lat, long):
     args['today_image'] = weather_dict['today'][time_chunk]['weather_icon']
 
     forecast = api.return_weather(lat, long)
+    if forecast == 'Something broke':
+        return redirect(url_for('error'))
     # print('\n\nSTARTING FORECAST\n')
     # print('\n{}\n\n'.format(forecast))
     # for i in forecast.items():
@@ -218,6 +226,7 @@ def results(city, lat, long):
 def save(city, lat, long):
     if 'username' in session:
         db.addSearch(session['username'], long, lat, city)
+        flash('Saved!')
         return redirect(url_for('results', city=city, long=long, lat=lat))
     else:
         print('\n\n\nYEETING\n\n\n')
@@ -246,6 +255,23 @@ def saved_searches():
     else:
         flash('You must be logged in to to that!')
         return redirect(url_for('index'))
+
+@app.route('/error')
+def error():
+    args = {}
+    args['username'] = ''
+    if 'username' in session:
+        args['login_info'] = 'SNIPPET_user_info_navbar.html'
+        args['username'] = session['username']
+    else:
+        args['login_info'] = 'SNIPPET_login_create_bar_navbar.html'
+    messages = ['Dang it! We didn\'t mean to do that!', 'Nani? That wasn\'t supposed to happen!', 'Hey there buddy. That\'s my fault.', 'I really didn\'t mean to do that!', 'Dang it! I swear, this has\'t happened before!']
+    args['message'] = choice(messages)
+    #args['image_source'] = api.getDogImage()
+    args['image_source'] = 'https://images.dog.ceo/breeds/affenpinscher/n02110627_3841.jpg'
+
+    return render_template('error.html', **args)
+
 
 if __name__ == '__main__':
     app.secret_key = os.urandom(32)

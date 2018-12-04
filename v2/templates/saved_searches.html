@@ -12,11 +12,15 @@
 <div class="container">
     <div class="row">
         <div class="w-100">
+            {% set msgs = get_flashed_messages() %}
+            {% for msg in msgs %}
+            <div class="alert alert-warning">{{ msg }}</div>
+            {% endfor %}
             {% for index in range(length) %}
             <div class="card" style="w-100">
                 <div class="card-body">
                     <a href="/city/{{ searches['city'][index][0] }}/{{ searches['lat'][index][0] }}/{{ searches['long'][index][0] }}">
-                        {{ searches['city'][index][0] }}
+                        {{ searches['city'][index][0] }} <span style="color: rgb(159, 159, 159)">({{ searches['lat'][index][0] }}, {{ searches['long'][index][0] }})</span>
                     </a>
                 </div>
             </div>
