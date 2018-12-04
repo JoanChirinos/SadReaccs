@@ -94,11 +94,11 @@ def addSearch(user, long, lat, city):
 
 def removeSearch(user, long, lat):
     '''
-    creates entry in searches database of longitude, latitude, city name, username, and timestamp
+    removes entry in searches database based on username, longitude, and latitude
     '''
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
-    c.execute("DELETE FROM searches WHERE username ='{0}', long = '{1}', lat = '{2}'").format(user, long, lat)
+    c.execute("DELETE FROM searches WHERE username ='{0}' AND long = '{1}' AND lat = '{2}'".format(user, long, lat))
     db.commit()
     db.close()
 
