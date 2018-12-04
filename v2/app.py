@@ -256,6 +256,16 @@ def saved_searches():
         flash('You must be logged in to to that!')
         return redirect(url_for('index'))
 
+@app.route('/remove/<city>/<lat>/<long>')
+def remove(city, lat, long):
+    if 'username' in session:
+        db.removeSearch(session['username'], long, lat)
+        return redirect(url_for('saved_searches'))
+    else:
+        flash('You must be logged in to do that!')
+        return redirect(url_for('index'))
+
+
 @app.route('/error')
 def error():
     args = {}
