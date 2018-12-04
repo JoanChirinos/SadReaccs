@@ -9,6 +9,7 @@ API | Description
 GeoDB | access to geographical data of a given location (i.e. city name)
 Climacell | access to realtime weather and forecasts
 World Weather Online | access to historical weather data
+Dogs API | pictures of dogs
 
 ## Dependencies:
 - We are using **Python3**
@@ -46,5 +47,8 @@ World Weather Online | access to historical weather data
 - Navigate to Climacell's API website, and [create an account](https://www.worldweatheronline.com/developer/api/docs/). Follow the prompts to create your account (you can also login using Github, Google+, or Facebook).
 - Once logged in, the API key will be available in the dashboard. Copy it.
 - Paste the key into `worldweatheronline.txt`.
+
+### Dogs API
+- Nothing is required!
 
 ## Please make sure to paste the correct keys into the correct files, else the API requests will not work!
