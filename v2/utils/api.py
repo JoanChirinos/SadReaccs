@@ -96,8 +96,8 @@ def return_weather(latitude, longitude):
         # use the user's api key; if no key found, use a default
         file = open('../climacell.txt', 'r').read()
         apikey = file.strip()
-        # if apikey == '':
-        #     apikey = 'dsZbfxJQ2fyXMLhnDJezjoeQJ77kiqSI'
+        if apikey == '':
+            apikey = 'dsZbfxJQ2fyXMLhnDJezjoeQJ77kiqSI'
 
         # set up headers
         headers = {}
