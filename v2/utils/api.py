@@ -241,7 +241,17 @@ def return_historical_weather(latitude, longitude):
         write_error(error)
         return 'Something broke'
 
+def return_random_dog():
+    '''
+    Returns a random image of a dog from the dog API.
+    '''
+    URL = 'https://dog.ceo/api/breeds/image/random'
+    dog_pic = access_info(URL)['message']
+    return dog_pic
+
+
 if __name__ == '__main__':
-    print(search_city('new york'))
-    print(return_weather(48, 27))
-    print(return_historical_weather(40,74))
+    # print(search_city('new york'))
+    # print(return_weather(48, 27))
+    # print(return_historical_weather(40,74))
+    print(return_random_dog())
