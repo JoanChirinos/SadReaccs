@@ -16,6 +16,12 @@ WeatherBois -- a web application for aspiring travelers to gather information su
 ==============================================================
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
+SusanL -- 2018-12-04 14:04
+--------------------------------------------------------------
+- added **kwarg functionality in accordance to Joan's wished, made lat and long PRIMARY KEYS, and robustified argument intake and database accessibility 
+- will updated design doc and README.md later on to reflect new dog API for error handling 
+==============================================================
+
 RaunakC -- 2018-12-04 14:00
 --------------------------------------------------------------
 - Added dog API (Joan promises it applies)
