@@ -1,6 +1,6 @@
 # SadReaccs - Joan Chirinos, Raunak Chowdhuy, Susan Lin
 
-Welcome! The title of our project is **weatherbois** and in short, it allows users to search cities by name and view the current/past/future climate and weather. The app will also provide historical data on the country in question. This is intended to help travelers can make the most informed decisions about the climate of where they want to go.
+Welcome! The title of our project is **WeatherBois** and in short, it allows users to search cities by name and view the current/past/future climate and weather. The app will also provide historical data on the country in question. This is intended to help travelers can make the most informed decisions about the climate of where they want to go.
 
 Our project utilizes three APIs: GeoDB, World Weather Online, and Climacell. The descriptions are below and the instructions to use each may be found in **API Key Instructions** after **Instructions for launch**
 
