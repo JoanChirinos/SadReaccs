@@ -15,7 +15,7 @@
             {% for index in range(length) %}
             <div class="card" style="w-100">
                 <div class="card-body">
-                    <a href="/city/{{ searches['city'][index] }}/{{ searches['lat'][index] }}/{{ searches['long'][index] }}">
+                    <a href="/city/{{ searches['city'][index][0] }}/{{ searches['lat'][index][0] }}/{{ searches['long'][index][0] }}">
                         {{ searches['city'][index][0] }}
                     </a>
                 </div>
