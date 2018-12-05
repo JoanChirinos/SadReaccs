@@ -36,7 +36,7 @@ def getPw(user):
     returns passwords of specific user
     '''
 
-    command_tuple = (user)
+    command_tuple = (user,)
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
     c.execute("SELECT password FROM users WHERE username=?", command_tuple)
