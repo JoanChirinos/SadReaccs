@@ -21,10 +21,9 @@ def isUser(user):
     '''
     returns boolean of whether user is already in the database
     '''
-    command_tuple = (user)
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
-    c.execute("SELECT username FROM users WHERE username=?",command_tuple)
+    c.execute("SELECT username FROM users WHERE username=?".format(user))
     name = c.fetchone()
     db.commit()
     db.close()
