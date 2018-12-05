@@ -86,7 +86,7 @@ def register(user, pw):
     db.close()
     return True
 
-def addSearch(user, long, lat, city, region=None, country):
+def addSearch(user, long, lat, city, country, region=None):
     '''
     creates entry in searches database of longitude, latitude, city name, username, and timestamp
     '''
