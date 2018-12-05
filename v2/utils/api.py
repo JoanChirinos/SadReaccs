@@ -39,11 +39,19 @@ def write_error(*args):
 
 def search_city(query):
     '''
-    Feeds the query through the GeoDB API and returns a result.
+    Feeds the query through the Accuweather API and returns a result.
     Checks for trailing and leading whitespace and makes decisions accordingly.
     If stripping results in empty string, returns None.
     If no results are returned, returns an empty list.
-    Limit on API calls: 432k/day
+    Limit on API calls: 10k/day
+
+    Returns a dictionary with the accompanying data in this format:
+    - 'local_name': A list with the local names of the cities
+    - 'eng_name': A list with the English names of the cities
+    - 'region': A list with the regions/states of the cities
+    - 'country': A list with the countries of the cities
+    - 'latitude': A list with the lats of the cities
+    - 'longitude': A list with the longs of the cities
     '''
     try:
         # remove both leading and trailing whitespace
@@ -53,25 +61,40 @@ def search_city(query):
         # check to see if the user was being a dud
         if query == '':
             return
+
         # replace all inner whitespace with %20 for API request
         query = query.replace(' ', '%20')
 
         # use the user's api key; if no key found, use a default
-        file = open('../geodb.txt', 'r').read()
+        file = open('../accuweather.txt', 'r').read()
         apikey = file.strip()
         if apikey == '':
             return 'No API key found'
 
-        # set up headers
-        headers = {}
-        headers['X-Mashape-Host'] = 'wft-geo-db.p.mashape.com'
-        headers['X-Mashape-Key'] = apikey
-
         # do the request
-        URL = 'https://wft-geo-db.p.mashape.com/v1/geo/cities?namePrefix={}&offset=0&limit=10'.format(query)
-        result = access_info(URL, **headers)['data']
-        # return jsonify(result)
-        return result
+        URL = 'http://dataservice.accuweather.com/locations/v1/cities/search?q={}&apikey='.format(query)
+        result = access_info(URL, apikey)
+
+        #parse through the JSON and return the cities
+        cities = {
+            'local_name':[],
+            'eng_name':[],
+            'region':[],
+            'country':[],
+            'latitude':[],
+            'longitude':[],
+        }
+
+        for item in result:
+            # print(item,'\n\n')
+            cities['local_name'].append(item['LocalizedName'])
+            cities['eng_name'].append(item['EnglishName'])
+            cities['region'].append(item['AdministrativeArea']['EnglishName'])
+            cities['country'].append(item['Country']['EnglishName'])
+            cities['latitude'].append(item['GeoPosition']['Latitude'])
+            cities['longitude'].append(item['GeoPosition']['Longitude'])
+
+        return cities
     except Exception as error:
         write_error(error)
         return 'Something broke'
@@ -252,6 +275,6 @@ def return_random_dog():
 
 if __name__ == '__main__':
     print(search_city('new york'))
-    print(return_weather(48, 27))
-    print(return_historical_weather(40,74))
-    print(return_random_dog())
+    # print(return_weather(48, 27))
+    # print(return_historical_weather(40,74))
+    # print(return_random_dog())

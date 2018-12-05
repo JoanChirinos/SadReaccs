@@ -6,7 +6,7 @@ Our project utilizes three APIs: GeoDB, World Weather Online, and Climacell. The
 
 API | Description
 --- | ---
-GeoDB | access to geographical data of a given location (i.e. city name)
+Accuweather | access to geographical data of a given location (i.e. city name)
 Climacell | access to realtime weather and forecasts
 World Weather Online | access to historical weather data
 Dogs API | pictures of dogs
@@ -31,15 +31,14 @@ Dogs API | pictures of dogs
 - go to the localhost:5000 address on your chosen browser
 
 ## Instructions for adding API keys:
-- Add the text files (`geodb.txt`, `worldweatheronline.txt`, and `climacell.txt`) to the root of the repo. 
+- Add the text files (`accuweather.txt`, `worldweatheronline.txt`, and `climacell.txt`) to the root of the repo.
 
 ## API Key Instructions
 
-### GeoDB -- 432,000 requests/day
-- Sign up through GeoDB's host, RapidAPI. [This page](http://geodb-cities-api.wirefreethought.com/docs/guides/getting-started/test-drive) contains all the instructions/prompts you need to generate an API key.
-  - **NOTE:** To sign up for RapidAPI, you will need a credit card. They do not charge your card and instead will cut you off from their API access once you exceed the limit.
-- Follow RapidAPI's prompts to subscribe to the GeoDB API. Copy your API key from the dashboard.
-- Paste the key into `geodb.txt`.
+### Accuweather -- 10,000 requests/day
+- Click on [this link](https://developer.accuweather.com/). Click "Register", and submit the registration form. You will receive an email.
+- Follow the instructions on the email to avail yourself of an API key.
+- Copy/paste this key to `accuweather.txt`.
 
 ### Climacell —- 1000 requests/day
 - Navigate to Climacell's API website, and create an account. [This link](https://developer.climacell.co/signup?accountType=basic&planType=free&price=free) will take you directly to the create account page with the Free Plan selected.

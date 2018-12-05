@@ -18,6 +18,11 @@ WeatherBois -- a web application for aspiring travelers to gather information su
 
 RaunakC -- 2018-12-04 14:00
 --------------------------------------------------------------
+- Replaced GeoDB API with a Accuweather API
+==============================================================
+
+RaunakC -- 2018-12-04 14:00
+--------------------------------------------------------------
 - Brought API keys up to specification
 ==============================================================
 

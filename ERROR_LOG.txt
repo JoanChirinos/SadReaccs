@@ -1,0 +1,12 @@
+START ERROR
+time: 2018-12-05 18:47:30 UTC
+breakage info:
+HTTP Error 400: BAD_REQUEST
+END ERROR
+
+START ERROR
+time: 2018-12-05 18:56:17 UTC
+breakage info:
+list indices must be integers or slices, not str
+END ERROR
+
