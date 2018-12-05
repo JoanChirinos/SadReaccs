@@ -37,7 +37,7 @@ Dogs API | pictures of dogs
 
 ### Accuweather -- 10,000 requests/day
 - Click on [this link](https://developer.accuweather.com/). Click "Register", and submit the registration form. You will receive an email.
-- Follow the instructions on the email to avail yourself of an API key.
+- Follow the instructions in the email to avail yourself of an API key.
 - Copy/paste this key to `accuweather.txt`.
 
 ### Climacell —- 1000 requests/day
