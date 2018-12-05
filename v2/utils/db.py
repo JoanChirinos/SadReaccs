@@ -23,7 +23,7 @@ def isUser(user):
     '''
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
-    c.execute("SELECT username FROM users WHERE username=?".format(user))
+    c.execute("SELECT username FROM users WHERE username='{0}'".format(user))
     name = c.fetchone()
     db.commit()
     db.close()
