@@ -46,7 +46,7 @@ Dogs API | pictures of dogs
 - Paste the key into `climacell.txt`.
 
 ### World Weather Online -- 500 requests/day
-- Navigate to Climacell's API website, and [create an account](https://www.worldweatheronline.com/developer/signup.aspx). Follow the prompts to create your account (you can also login using Github, Google+, or Facebook).
+- Navigate to Climacell's API website, and [create an account](https://www.worldweatheronline.com/developer/api/docs/). Follow the prompts to create your account (you can also login using Github, Google+, or Facebook).
 - Once logged in, the API key will be available in the dashboard. Copy it.
 - Paste the key into `worldweatheronline.txt`.
 
