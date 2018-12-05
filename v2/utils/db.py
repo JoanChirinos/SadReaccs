@@ -23,7 +23,9 @@ def isUser(user):
     '''
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
-    c.execute("SELECT username FROM users WHERE username='{0}'".format(user))
+    command_tuple = (user,)
+
+    c.execute("SELECT username FROM users WHERE username=?", command_tuple)
     name = c.fetchone()
     db.commit()
     db.close()
@@ -54,7 +56,7 @@ def getSearches(user):
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
 
-    command_tuple= (user)
+    command_tuple= (user,)
 
     print("THIS WORKS")
     c.execute("SELECT long FROM searches WHERE username=?",command_tuple)
