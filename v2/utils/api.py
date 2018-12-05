@@ -45,13 +45,13 @@ def search_city(query):
     If no results are returned, returns an empty list.
     Limit on API calls: 10k/day
 
-    Returns a dictionary with the accompanying data in this format:
-    - 'local_name': A list with the local names of the cities
-    - 'eng_name': A list with the English names of the cities
-    - 'region': A list with the regions/states of the cities
-    - 'country': A list with the countries of the cities
-    - 'latitude': A list with the lats of the cities
-    - 'longitude': A list with the longs of the cities
+    Returns a list. Each entry is a dictionary with the data in this format:
+    - 'local_name': The local name of the city
+    - 'eng_name': The English name of the city
+    - 'region': The region/state of the city
+    - 'country': The country of the city
+    - 'latitude': Latitude of city
+    - 'longitude': Longitude of city
     '''
     try:
         # remove both leading and trailing whitespace
@@ -76,23 +76,17 @@ def search_city(query):
         result = access_info(URL, apikey)
 
         #parse through the JSON and return the cities
-        cities = {
-            'local_name':[],
-            'eng_name':[],
-            'region':[],
-            'country':[],
-            'latitude':[],
-            'longitude':[],
-        }
+        cities = []
 
         for item in result:
-            # print(item,'\n\n')
-            cities['local_name'].append(item['LocalizedName'])
-            cities['eng_name'].append(item['EnglishName'])
-            cities['region'].append(item['AdministrativeArea']['EnglishName'])
-            cities['country'].append(item['Country']['EnglishName'])
-            cities['latitude'].append(item['GeoPosition']['Latitude'])
-            cities['longitude'].append(item['GeoPosition']['Longitude'])
+            cities.append({
+                'local_name': item['LocalizedName'],
+                'eng_name': item['EnglishName'],
+                'region': item['AdministrativeArea']['EnglishName'],
+                'country': item['Country']['EnglishName'],
+                'latitude': item['GeoPosition']['Latitude'],
+                'longitude': item['GeoPosition']['Longitude'],
+            })
 
         return cities
     except Exception as error:
