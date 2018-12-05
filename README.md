@@ -6,7 +6,7 @@ Our project utilizes three APIs: GeoDB, World Weather Online, and Climacell. The
 
 API | Description
 --- | ---
-Accuweather | access to geographical data of a given location (i.e. city name)
+Accuweather Locations API | access to geographical data of a given location (i.e. city name)
 Climacell | access to realtime weather and forecasts
 World Weather Online | access to historical weather data
 Dogs API | pictures of dogs
