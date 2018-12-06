@@ -50,7 +50,7 @@ def getSearches(user):
     '''
     returns all searches of a specific user in a dictionary of longitude, latitude, city name, and time
     '''
-    dict = {'long':[], 'lat':[], 'city':[], 'time':[]}
+    dict = {'long':[], 'lat':[], 'city':[], 'time':[],'region':[], 'country':[]}
 
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
@@ -65,6 +65,10 @@ def getSearches(user):
     c.execute("SELECT city FROM searches WHERE username=?",command_tuple)
     dict['city'] = c.fetchall()
     c.execute("SELECT time FROM searches WHERE username=?",command_tuple)
+    dict['time'] = c.fetchall()
+    c.execute("SELECT region FROM searches WHERE username=?",command_tuple)
+    dict['time'] = c.fetchall()
+    c.execute("SELECT country FROM searches WHERE username=?",command_tuple)
     dict['time'] = c.fetchall()
 
     db.commit()
