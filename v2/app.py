@@ -3,7 +3,7 @@ from time import strftime
 
 from flask import Flask, render_template, request, session, url_for, redirect, flash, jsonify
 
-from utils import api, db
+from utils import api, db, color
 from random import choice
 
 app = Flask(__name__) #create instance of class Flask
@@ -19,12 +19,13 @@ def index():
     If the user is logged in, displays the user-toolbar
     Otherwise, displays login and create_account buttons
     '''
+    rgb = color.get_rgb()
     if 'username' in session:
         print('LOGGED IN')
         return render_template('index.html', login_info='SNIPPET_user_info.html', username=session['username'])
     else:
         print('NOT LOGGED IN!')
-        return render_template('index.html', login_info='SNIPPET_login_create_bar.html')
+        return render_template('index.html', login_info='SNIPPET_login_create_bar.html', rgb=rgb)
 
 @app.route('/logout')
 def logout():
@@ -60,9 +61,10 @@ def login():
     If user is logged in, redirects them to root
     Otherwise, renders login template
     '''
+    rgb = color.get_rgb()
     if 'username' in session:
         return redirect(url_for('index'))
-    return render_template('login.html')
+    return render_template('login.html', rgb=rgb)
 
 @app.route('/auth', methods=["POST"])
 def auth():
@@ -94,7 +96,8 @@ def create():
     '''
     if 'username' in session:
         return redirect(url_for('index'))
-    return render_template('create_account.html')
+    rgb = color.get_rgb()
+    return render_template('create_account.html', rgb=rgb)
 
 @app.route('/create_account_action', methods=["POST"])
 def create_action():
@@ -160,7 +163,8 @@ def search():
     if result == 'Something broke':
         return redirect(url_for('error'))
     if result:
-        return render_template('search.html', result=result, login_info=login_info, username=username)
+        rgb = color.get_rgb()
+        return render_template('search.html', result=result, login_info=login_info, username=username, rgb=rgb)
     elif result == []:
         flash('No cities found!')
         return redirect(url_for('index'))
@@ -209,6 +213,7 @@ def results(city, region, country, lat, long):
 
     time_chunk = int(int(strftime('%H')) / 3)
     args['today_image'] = weather_dict['today'][time_chunk]['weather_icon']
+    args['rgb'] = color.get_rgb()
 
     forecast = api.return_weather(lat, long)
     if forecast == 'Something broke':
@@ -252,6 +257,7 @@ def saved_searches():
         args['login_info'] = 'SNIPPET_user_info_navbar.html'
         args['username'] = session['username']
         args['length'] = l
+        args['rgb'] = color.get_rgb()
 
         print('\n\nSEARCHES:\n\n{}\n\n'.format(searches))
         print('\n\nLENGTH: {}\n\n'.format(args['length']))
@@ -279,9 +285,11 @@ def error():
         args['username'] = session['username']
     else:
         args['login_info'] = 'SNIPPET_login_create_bar_navbar.html'
-    messages = ['Dang it! We didn\'t mean to do that!', 'Nani? That wasn\'t supposed to happen!', 'Hey there buddy. That\'s my fault.', 'I really didn\'t mean to do that!', 'Dang it! I swear, this has\'t happened before!']
+    messages = ['Dang it! We didn\'t mean to do that!', 'Nani? That wasn\'t supposed to happen!', 'Hey there buddy. That\'s my fault.', 'I really didn\'t mean to do that!', 'Dang it! I swear, this hasn\'t happened before!']
     args['message'] = choice(messages)
     args['image_source'] = api.return_random_dog()
+
+    args['rgb'] = color.get_rgb()
 
     return render_template('error.html', **args)
 

@@ -13,8 +13,12 @@
 
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='search.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
-    
+
     <link rel="icon" href="{{ url_for('static', filename='favicon.jpeg')}}">
+
+    <style>
+      {% block style %}{% endblock %}
+    </style>
 
     <title>{% block title %}{% endblock %} -|- WeatherBois</title>
 </head>
