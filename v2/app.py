@@ -197,17 +197,17 @@ def results(city, region, country, lat, long):
     for item in today.items():
         print('{}:\n\t{}'.format(item[0], item[1]))
     args['old_weather'] = weather_dict
-    # print('\n\nOLD WEATHER\n{}\n\n'.format(weather_dict))
-    # for item in weather_dict.items():
-    #     print('{}\n\n'.format(item))
-    # print('\n\nEND OLD WEATHER\n\n')
+    print('\n\nOLD WEATHER\n{}\n\n'.format(weather_dict))
+    for item in weather_dict.items():
+        print('{}\n\n'.format(item))
+    print('\n\nEND OLD WEATHER\n\n')
 
 
     args['today_date'] = weather_dict['date'][-1]
     args['today_max_temp'] = weather_dict['temp']['max'][-1]
     args['today_min_temp'] = weather_dict['temp']['min'][-1]
 
-    time_chunk = int((int(strftime('%H')) / 3) - 1)
+    time_chunk = int(int(strftime('%H')) / 3)
     args['today_image'] = weather_dict['today'][time_chunk]['weather_icon']
 
     forecast = api.return_weather(lat, long)
