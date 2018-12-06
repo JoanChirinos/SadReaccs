@@ -240,6 +240,7 @@ def save(city, region, country, lat, long):
 def saved_searches():
     if 'username' in session:
         searches = db.getSearches(session['username'])
+        print('\n\nSEARCHES:\n\n{}\n\n'.format(searches))
 
         l = len(searches['long'])
 
