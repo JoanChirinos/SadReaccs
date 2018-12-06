@@ -76,37 +76,41 @@ def getSearches(user):
 
     return dict
 
-def getLong(user):
-    dict = {'long':[]}
+getSearches('susan')
+
+def getCountry(user):
+    dict = {'country':[]}
     command_tuple= (user,)
 
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
 
-    c.execute("SELECT long FROM searches WHERE username=?",command_tuple)
-    dict['long'] = c.fetchall()
+    c.execute("SELECT country FROM searches WHERE username=?",command_tuple)
+    dict['country'] = c.fetchall()
 
     db.commit()
     db.close()
 
     print(dict)
 
-def getLat(user):
-    dict = {'lat':[]}
+getCountry('susan')
+
+def getRegion(user):
+    dict = {'region':[]}
     command_tuple= (user,)
 
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
 
-    c.execute("SELECT lat FROM searches WHERE username=?",command_tuple)
-    dict['lat'] = c.fetchall()
+    c.execute("SELECT region FROM searches WHERE username=?",command_tuple)
+    dict['region'] = c.fetchall()
 
     db.commit()
     db.close()
 
     print(dict)
 
-getLat('susan')
+getRegion('susan')
 
 def register(user, pw):
     '''
