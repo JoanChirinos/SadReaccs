@@ -12,22 +12,11 @@
 <div class="container">
     <div class="row">
         <div class="w-100">
-            {% for city in cities %}
+            {% for item in result %}
             <div class="card" style="w-100">
                 <div class="card-body">
-                    <a href="/city/{{ city['city'] }}/{{ city['latitude'] }}/{{ city['longitude'] }}">
-
-                        {{city['city']}},
-                        {% if city['region'] %}
-                            {{city['region']}},
-                        {% endif %}
-
-                    <!-- if the country name exists, put it; otherwise, put the country initial -->
-                        {% if city['country']%}
-                            {{city['country']}}
-                        {% else %}
-                            {{city['countryCode']}}
-                        {% endif %}
+                    <a href="/city/{{item['local_name']}}/{{item['region']}}/{{item['country']}}/{{item['latitude']}}/{{item['longitude']}}">
+                        {{item['local_name']}}, {{item['region']}}, {{item['country']}} <span style="color: rgb(100, 100, 100);">| {{item['eng_name']}}, ({{item['latitude']}}, {{item['longitude']}})</span>
                     </a>
                 </div>
             </div>

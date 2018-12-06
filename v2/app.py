@@ -156,10 +156,11 @@ def search():
     # query and empty string check
     query = request.args['query']
     result = api.search_city(query)
+    print('\n\n\nresult:\n\n{}\n\n\n'.format(result))
     if result == 'Something broke':
         return redirect(url_for('error'))
     if result:
-        return render_template('search.html', cities=result, login_info=login_info, username=username)
+        return render_template('search.html', result=result, login_info=login_info, username=username)
     elif result == []:
         flash('No cities found!')
         return redirect(url_for('index'))
@@ -167,14 +168,18 @@ def search():
         flash('No query inputted!')
         return redirect(url_for('index'))
 
-@app.route('/city/<city>/<lat>/<long>')
-def results(city, lat, long):
+@app.route('/city/<city>/<region>/<country>/<lat>/<long>')
+def results(city, region, country, lat, long):
     '''
     Dynamic routing for results page
     Shows weather information for a given city, lat, and long
     '''
     args = dict()
     args['city'] = city
+    args['region'] = region
+    args['country'] = country
+    args['lat'] = lat
+    args['long'] = long
     args['username'] = ''
     if 'username' in session:
         args['login_info'] = 'SNIPPET_user_info_navbar.html'
@@ -221,16 +226,15 @@ def results(city, lat, long):
     args['long'] = long
     return render_template('results.html', **args)
 
-@app.route('/save/<city>/<lat>/<long>')
-def save(city, lat, long):
+@app.route('/save/<city>/<region>/<country>/<lat>/<long>')
+def save(city, region, country, lat, long):
     if 'username' in session:
-        db.addSearch(session['username'], long, lat, city)
-        flash('Saved!')
-        return redirect(url_for('results', city=city, long=long, lat=lat))
+        db.addSearch(session['username'], long, lat, city, country, region)
+        flash('Your saved searches have been updated!')
     else:
         print('\n\n\nYEETING\n\n\n')
         flash('You must be logged in to do that!')
-        return redirect(url_for('results', city=city, long=long, lat=lat))
+    return redirect(url_for('results', city=city, long=long, lat=lat, region=region, country=country))
 
 @app.route('/saved_searches')
 def saved_searches():

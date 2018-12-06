@@ -16,7 +16,7 @@
             <h1 class="card-title">{{ city }}</h1>
             <h5 class="cart-title"><span style="color: rgb(100, 100, 100); white-space: nowrap;">{{ today_date }}</span></h5>
             <!-- ONLY SHOW IF NOT SAVED YET -->
-            <a href="/save/{{city}}/{{lat}}/{{long}}" class="btn btn-success">Save this search</a>
+            <a href="/save/{{city}}/{{region}}/{{country}}/{{lat}}/{{long}}" class="btn btn-success">Save this search</a>
             {% set msgs = get_flashed_messages() %}
             {% for msg in msgs %}
             <div class="alert alert-warning my-1">
