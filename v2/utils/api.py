@@ -43,7 +43,7 @@ def search_city(query):
     Checks for trailing and leading whitespace and makes decisions accordingly.
     If stripping results in empty string, returns None.
     If no results are returned, returns an empty list.
-    Limit on API calls: 10k/day
+    Limit on API calls: 50/day
 
     Returns a list. Each entry is a dictionary with the data in this format:
     - 'local_name': The local name of the city
@@ -57,7 +57,7 @@ def search_city(query):
         # remove both leading and trailing whitespace
         query = query.lstrip()
         query = query.rstrip()
-        # print(query)
+        print(query)
         # check to see if the user was being a dud
         if query == '':
             return
@@ -66,7 +66,7 @@ def search_city(query):
         query = query.replace(' ', '%20')
 
         # use the user's api key; if no key found, use a default
-        file = open('../accuweather.txt', 'r').read()
+        file = open('../accuweather0.txt', 'r').read()
         apikey = file.strip()
         if apikey == '':
             return 'No API key found'

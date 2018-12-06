@@ -35,7 +35,7 @@ Dogs API | pictures of dogs
 
 ## API Key Instructions
 
-### Accuweather -- 10,000 requests/day
+### Accuweather -- 50 requests/day
 - Click on [this link](https://developer.accuweather.com/). Click "Register", and submit the registration form. You will receive an email.
 - Follow the instructions in the email to avail yourself of an API key.
 - Copy/paste this key to `accuweather.txt`.
