@@ -15,6 +15,10 @@ WeatherBois -- a web application for aspiring travelers to gather information su
     \____/_/ \_____\/ \___/_(   \_____\/ \_____\/ \_____\/
 ==============================================================
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+SusanL -- 2018-12-06 22:13
+--------------------------------------------------------------
+- updated docs to reflect db and api changes, sent api keys to sr. brown, and directed team to stress test 
+==============================================================
 
 JoanC -- 2018-12-06 20:28
 --------------------------------------------------------------
@@ -24,6 +28,13 @@ JoanC -- 2018-12-06 20:28
 JoanC -- 2018-12-06 20:13
 --------------------------------------------------------------
 - Added fxnality to make time-based color gradient also based on local time zone
+==============================================================
+
+SusanL -- 2018-12-05 22:52
+--------------------------------------------------------------
+- updated db functions to hold parameters region and country 
+- implemented tuples to use ?? in place of '{}'
+- fixed bug in db to return regions and countries 
 ==============================================================
 
 RaunakC -- 2018-12-05 20:01
@@ -36,6 +47,11 @@ JoanC -- 2018-12-06 19:45
 - Added time-based color gradient to results page
 - Fixed a bug that cause the first historical weather date to be blank
 - Removed herobrine
+==============================================================
+
+SusanL -- 2018-12-05 13:34
+--------------------------------------------------------------
+- bugged joan about frontend dev and making color reflect time in background 
 ==============================================================
 
 RaunakC -- 2018-12-05 01:07
