@@ -17,6 +17,7 @@ def get_rgb(offset):
     seconds %= (60 * 60 * 24)
     print('modding by: {}'.format(60 * 60 * 24))
     print('seconds after: {}'.format(seconds))
+    print('which is basically: {}:{}:{}'.format(int(seconds / (60 * 60)), int(seconds / (60) % 60), seconds % 60))
 
     print('SECONDS: {}'.format(seconds))
     index = int(seconds / 108)

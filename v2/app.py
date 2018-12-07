@@ -19,13 +19,12 @@ def index():
     If the user is logged in, displays the user-toolbar
     Otherwise, displays login and create_account buttons
     '''
-    rgb = color.get_rgb()
     if 'username' in session:
         print('LOGGED IN')
         return render_template('index.html', login_info='SNIPPET_user_info.html', username=session['username'])
     else:
         print('NOT LOGGED IN!')
-        return render_template('index.html', login_info='SNIPPET_login_create_bar.html', rgb=rgb)
+        return render_template('index.html', login_info='SNIPPET_login_create_bar.html')
 
 @app.route('/logout')
 def logout():
@@ -61,10 +60,9 @@ def login():
     If user is logged in, redirects them to root
     Otherwise, renders login template
     '''
-    rgb = color.get_rgb()
     if 'username' in session:
         return redirect(url_for('index'))
-    return render_template('login.html', rgb=rgb)
+    return render_template('login.html')
 
 @app.route('/auth', methods=["POST"])
 def auth():
@@ -96,8 +94,8 @@ def create():
     '''
     if 'username' in session:
         return redirect(url_for('index'))
-    rgb = color.get_rgb()
-    return render_template('create_account.html', rgb=rgb)
+    return render_template('create_account.html')
+
 
 @app.route('/create_account_action', methods=["POST"])
 def create_action():
@@ -163,8 +161,7 @@ def search():
     if result == 'Something broke':
         return redirect(url_for('error'))
     if result:
-        rgb = color.get_rgb()
-        return render_template('search.html', result=result, login_info=login_info, username=username, rgb=rgb)
+        return render_template('search.html', result=result, login_info=login_info, username=username)
     elif result == []:
         flash('No cities found!')
         return redirect(url_for('index'))
@@ -172,8 +169,8 @@ def search():
         flash('No query inputted!')
         return redirect(url_for('index'))
 
-@app.route('/city/<city>/<region>/<country>/<lat>/<long>')
-def results(city, region, country, lat, long):
+@app.route('/city/<city>/<region>/<country>/<timezone>/<lat>/<long>')
+def results(city, region, country, timezone, lat, long):
     '''
     Dynamic routing for results page
     Shows weather information for a given city, lat, and long
@@ -184,6 +181,7 @@ def results(city, region, country, lat, long):
     args['country'] = country
     args['lat'] = lat
     args['long'] = long
+    args['timezone'] = timezone
     args['username'] = ''
     if 'username' in session:
         args['login_info'] = 'SNIPPET_user_info_navbar.html'
@@ -213,7 +211,7 @@ def results(city, region, country, lat, long):
 
     time_chunk = int(int(strftime('%H')) / 3)
     args['today_image'] = weather_dict['today'][time_chunk]['weather_icon']
-    args['rgb'] = color.get_rgb()
+    args['rgb'] = color.get_rgb(int(timezone))
 
     forecast = api.return_weather(lat, long)
     if forecast == 'Something broke':
@@ -257,7 +255,6 @@ def saved_searches():
         args['login_info'] = 'SNIPPET_user_info_navbar.html'
         args['username'] = session['username']
         args['length'] = l
-        args['rgb'] = color.get_rgb()
 
         print('\n\nSEARCHES:\n\n{}\n\n'.format(searches))
         print('\n\nLENGTH: {}\n\n'.format(args['length']))
@@ -288,8 +285,6 @@ def error():
     messages = ['Dang it! We didn\'t mean to do that!', 'Nani? That wasn\'t supposed to happen!', 'Hey there buddy. That\'s my fault.', 'I really didn\'t mean to do that!', 'Dang it! I swear, this hasn\'t happened before!']
     args['message'] = choice(messages)
     args['image_source'] = api.return_random_dog()
-
-    args['rgb'] = color.get_rgb()
 
     return render_template('error.html', **args)
 
