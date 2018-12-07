@@ -38,17 +38,17 @@ Dogs API | pictures of dogs
 ### Accuweather -- 50 requests/day
 - Click on [this link](https://developer.accuweather.com/). Click "Register", and submit the registration form. You will receive an email.
 - Follow the instructions in the email to avail yourself of an API key.
-- Copy/paste this key to `accuweather.txt`. Add this key to the root of the repo.
+- Copy/paste this key to `accuweather.txt`. Add this file to the root of the repo.
 
 ### Climacell —- 1000 requests/day
 - Navigate to Climacell's API website, and create an account. [This link](https://developer.climacell.co/signup?accountType=basic&planType=free&price=free) will take you directly to the create account page with the Free Plan selected.
 - From your account dashboard, select the API Token. Copy this token.
-- Paste the key into `climacell.txt`.
+- Paste the key into `climacell.txt`. Add this file to the root of the repo.
 
 ### World Weather Online -- 500 requests/day
 - Navigate to WWO's API website, and [create an account](https://www.worldweatheronline.com/developer/api/docs/). Follow the prompts to create your account (you can also login using Github, Google+, or Facebook).
 - Once logged in, the API key will be available in the dashboard. Copy it.
-- Paste the key into `worldweatheronline.txt`.
+- Paste the key into `worldweatheronline.txt`. Add this file to the root of the repo.
 
 ### Dogs API
 - Nothing is required!

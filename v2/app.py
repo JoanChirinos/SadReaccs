@@ -229,15 +229,15 @@ def results(city, region, country, timezone, lat, long):
     args['long'] = long
     return render_template('results.html', **args)
 
-@app.route('/save/<city>/<region>/<country>/<lat>/<long>')
-def save(city, region, country, lat, long):
+@app.route('/save/<city>/<region>/<country>/<timezone>/<lat>/<long>')
+def save(city, region, country, timezone, lat, long):
     if 'username' in session:
-        db.addSearch(session['username'], long, lat, city, country, region)
+        db.addSearch(session['username'], long, lat, city, country, region, timezone)
         flash('Your saved searches have been updated!')
     else:
         print('\n\n\nYEETING\n\n\n')
         flash('You must be logged in to do that!')
-    return redirect(url_for('results', city=city, long=long, lat=lat, region=region, country=country))
+    return redirect(url_for('results', city=city, long=long, lat=lat, region=region, country=country, timezone=timezone))
 
 @app.route('/saved_searches')
 def saved_searches():
