@@ -275,7 +275,7 @@
             <div class="container-fluid">
                 <h3 class="card-title text-center">Last Week's Weather</h3>
                 <div class="row">
-                    {% for index in range(-9, -5, 1) %}
+                    {% for index in range(0, 5, 1) %}
                     <div class="col-lg-3">
                         <div class="card w-100 my-1">
                             <div class="card-header text-center">
@@ -305,7 +305,7 @@
                     {% endfor %}
                 </div>
                 <div class="row">
-                    {% for index in range(-5, -2, 1) %}
+                    {% for index in range(5, 8, 1) %}
                     <div class="col-lg-4">
                         <div class="card w-100 my-1">
                             <div class="card-header text-center">
