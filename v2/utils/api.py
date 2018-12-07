@@ -67,7 +67,7 @@ def search_city(query):
         query = query.replace(' ', '%20')
 
         # use the user's api key; if no key found, use a default
-        file = open('../accuweather0.txt', 'r').read()
+        file = open('../accuweather1.txt', 'r').read()
         apikey = file.strip()
         if apikey == '':
             return 'No API key found'

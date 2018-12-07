@@ -2,7 +2,7 @@ import sqlite3
 import random
 from datetime import datetime
 
-DB_FILE="./data/sadreaccs.db"
+DB_FILE="../data/sadreaccs.db"
 
 def create_db():
     '''
@@ -12,7 +12,7 @@ def create_db():
     c = db.cursor()               #facilitate db ops
 
     c.execute("CREATE TABLE IF NOT EXISTS users(username TEXT, password TEXT)")
-    c.execute("CREATE TABLE IF NOT EXISTS searches(username TEXT, long INTEGER, lat INTEGER, city TEXT, time TEXT, region TEXT, country TEXT, PRIMARY KEY (long, lat))")
+    c.execute("CREATE TABLE IF NOT EXISTS searches(username TEXT, long INTEGER, lat INTEGER, city TEXT, time TEXT, region TEXT, country TEXT, timezone TEXT, PRIMARY KEY (long, lat))")
 
     db.commit()
     db.close()
@@ -50,7 +50,7 @@ def getSearches(user):
     '''
     returns all searches of a specific user in a dictionary of longitude, latitude, city name, and time
     '''
-    dict = {'long':[], 'lat':[], 'city':[], 'time':[],'region':[], 'country':[]}
+    dict = {'long':[], 'lat':[], 'city':[], 'time':[],'region':[], 'country':[], 'timezone':[]}
 
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
@@ -70,47 +70,13 @@ def getSearches(user):
     dict['region'] = c.fetchall()
     c.execute("SELECT country FROM searches WHERE username=?",command_tuple)
     dict['country'] = c.fetchall()
+    c.execute("SELECT timezone FROM searches WHERE username=?",command_tuple)
+    dict['timezone'] = c.fetchall()
 
     db.commit()
     db.close()
 
     return dict
-
-getSearches('susan')
-
-def getCountry(user):
-    dict = {'country':[]}
-    command_tuple= (user,)
-
-    db = sqlite3.connect(DB_FILE)
-    c = db.cursor()
-
-    c.execute("SELECT country FROM searches WHERE username=?",command_tuple)
-    dict['country'] = c.fetchall()
-
-    db.commit()
-    db.close()
-
-    print(dict)
-
-getCountry('susan')
-
-def getRegion(user):
-    dict = {'region':[]}
-    command_tuple= (user,)
-
-    db = sqlite3.connect(DB_FILE)
-    c = db.cursor()
-
-    c.execute("SELECT region FROM searches WHERE username=?",command_tuple)
-    dict['region'] = c.fetchall()
-
-    db.commit()
-    db.close()
-
-    print(dict)
-
-getRegion('susan')
 
 def register(user, pw):
     '''
@@ -126,7 +92,7 @@ def register(user, pw):
     db.close()
     return True
 
-def addSearch(user, long, lat, city, country, region):
+def addSearch(user, long, lat, city, country, region, timezone):
     '''
     creates entry in searches database of longitude, latitude, city name, username, and timestamp
     '''
@@ -135,8 +101,8 @@ def addSearch(user, long, lat, city, country, region):
 
     command_tuple = (datetime.utcnow(), user, long, lat)
     c.execute("UPDATE searches SET time=? WHERE username=? AND long=? AND lat=? ", command_tuple)
-    command_tuple = (user, long, lat, city, datetime.utcnow(), region, country, user, city, long, lat)
-    c.execute("INSERT INTO searches SELECT ?,?,?,?,?,?,? WHERE NOT EXISTS (SELECT city from searches WHERE username=? AND city=? AND long=? AND lat=?)", command_tuple)
+    command_tuple = (user, long, lat, city, datetime.utcnow(), region, country, timezone, user, city, long, lat)
+    c.execute("INSERT INTO searches SELECT ?,?,?,?,?,?,?,? WHERE NOT EXISTS (SELECT city from searches WHERE username=? AND city=? AND long=? AND lat=?)", command_tuple)
 
     db.commit()
     db.close()
