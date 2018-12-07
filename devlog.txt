@@ -16,13 +16,17 @@ WeatherBois -- a web application for aspiring travelers to gather information su
 ==============================================================
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
+JoanC -- 2018-12-06 20:13
+--------------------------------------------------------------
+- Added fxnality to make time-based color gradient also based on local time zone
+==============================================================
+
 RaunakC -- 2018-12-05 20:01
 --------------------------------------------------------------
 - Added timezones to Accuweather
-- Removed herobrine
 ==============================================================
 
-JoanC -- 2018-12-05 01:51
+JoanC -- 2018-12-06 19:45
 --------------------------------------------------------------
 - Added time-based color gradient to results page
 - Fixed a bug that cause the first historical weather date to be blank
