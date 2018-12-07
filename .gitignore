@@ -60,6 +60,11 @@ db.sqlite3
 instance/
 .webassets-cache
 
+# API Key stuff:
+accuweather*.txt
+climacell.txt
+worldweatheronline.txt
+
 # Scrapy stuff:
 .scrapy
 
