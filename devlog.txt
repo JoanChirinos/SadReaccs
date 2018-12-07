@@ -16,6 +16,13 @@ WeatherBois -- a web application for aspiring travelers to gather information su
 ==============================================================
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
+JoanC -- 2018-12-05 01:51
+--------------------------------------------------------------
+- Added time-based color gradient to results page
+- Fixed a bug that cause the first historical weather date to be blank
+- Removed herobrine
+==============================================================
+
 RaunakC -- 2018-12-05 01:07
 --------------------------------------------------------------
 - Added extra API keys for Accuweather
