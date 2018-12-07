@@ -52,12 +52,13 @@ def search_city(query):
     - 'country': The country of the city
     - 'latitude': Latitude of city
     - 'longitude': Longitude of city
+    - 'timezone': Timezone of city (returned as a difference relative to GMT)
     '''
     try:
         # remove both leading and trailing whitespace
         query = query.lstrip()
         query = query.rstrip()
-        print(query)
+        # print(query)
         # check to see if the user was being a dud
         if query == '':
             return
@@ -86,6 +87,7 @@ def search_city(query):
                 'country': item['Country']['EnglishName'],
                 'latitude': item['GeoPosition']['Latitude'],
                 'longitude': item['GeoPosition']['Longitude'],
+                'timezone': int(item['TimeZone']['GmtOffset']),
             })
 
         return cities
