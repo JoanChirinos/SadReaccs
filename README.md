@@ -53,4 +53,14 @@ Dogs API | pictures of dogs
 ### Dogs API
 - Nothing is required!
 
+### API Keys we have provided:
+- climacell.txt
+- worldweatheronline.txt
+- accuweather0.txt
+- accuweather1.txt
+- accuweather2.txt
+- accuweather3.txt
+- accuweather4.txt
+- if you choose to use the keys we have included, run `cp textfilename.txt repoofholding`
+
 ## Please make sure to paste the correct keys into the correct files, else the API requests will not work!
