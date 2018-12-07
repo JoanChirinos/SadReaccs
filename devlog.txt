@@ -16,6 +16,11 @@ WeatherBois -- a web application for aspiring travelers to gather information su
 ==============================================================
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
+JoanC -- 2018-12-06 20:28
+--------------------------------------------------------------
+- Made background color based on local time
+==============================================================
+
 JoanC -- 2018-12-06 20:13
 --------------------------------------------------------------
 - Added fxnality to make time-based color gradient also based on local time zone
